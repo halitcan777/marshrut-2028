@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Маршрут 2028 — визуальная стратегия профессионального развития</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307090c'/%3E%3Cpath d='M16 5 L16 27 M9 12 L23 12' stroke='%23f0a63c' stroke-width='2.5'/%3E%3C/svg%3E">
+  <meta name="description" content="Персональная визуальная стратегия профессионального развития на два года. Роль: продюсер цифровых продуктов и событий.">
+<style>
+  :root{
+    --bg:#07090c;
+    --panel:rgba(12,16,21,.92);
+    --line:#1e2732;
+    --steel:#93a4b8;
+    --amber:#f0a63c;
+    --text:#dfe6ee;
+    --dim:#7d8b9a;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:var(--font);overflow:hidden}
+  canvas{display:block}
+  #app{position:fixed;inset:0}
+
+  /* ---------- стартовый экран ---------- */
+  #intro{
+    position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(120% 90% at 50% 40%,#0d1219 0%,#05070a 70%);
+    transition:opacity .6s ease;
+  }
+  #intro .box{max-width:620px;padding:0 32px;text-align:left}
+  #intro .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:22px}
+  #intro h1{font-size:clamp(30px,5vw,52px);line-height:1.05;margin:0 0 18px;font-weight:600;letter-spacing:-.02em}
+  #intro p{color:var(--dim);line-height:1.6;font-size:15px;margin:0 0 28px;max-width:52ch}
+  #intro .keys{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:34px;font-size:13px;color:var(--dim)}
+  #intro .keys b{color:var(--text);font-weight:600;background:#141a22;border:1px solid var(--line);
+    border-radius:5px;padding:3px 8px;margin-right:7px;font-size:12px}
+  #enter{
+    background:var(--amber);color:#0a0d11;border:0;border-radius:7px;padding:14px 30px;
+    font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;letter-spacing:.01em;
+  }
+  #enter:hover{background:#ffb951}
+
+  /* ---------- HUD ---------- */
+  #hud{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:0;transition:opacity .5s .2s ease}
+  #hud.on{opacity:1}
+  .tl{position:absolute;top:22px;left:24px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .tl b{display:block;color:var(--text);font-size:14px;letter-spacing:.04em;text-transform:none;margin-top:5px;font-weight:600}
+
+  #nav{position:absolute;top:20px;right:24px;display:flex;gap:6px;pointer-events:auto;flex-wrap:wrap;justify-content:flex-end}
+  #nav button{
+    background:rgba(16,21,27,.86);border:1px solid var(--line);color:var(--dim);
+    font-family:inherit;font-size:12px;padding:8px 13px;border-radius:6px;cursor:pointer;
+    backdrop-filter:blur(6px);transition:.15s;
+  }
+  #nav button:hover{color:var(--text);border-color:#31414f}
+  #nav button.act{color:#0a0d11;background:var(--amber);border-color:var(--amber);font-weight:600}
+
+  /* мини-карта */
+  #mapwrap{position:absolute;right:24px;bottom:24px;width:170px;pointer-events:none}
+  #mapwrap .cap{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;text-align:right}
+  #minimap{width:170px;height:210px;background:rgba(10,13,17,.8);border:1px solid var(--line);border-radius:8px}
+
+  /* инфопанель */
+  #info{
+    position:absolute;left:24px;bottom:24px;width:min(430px,42vw);
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:20px 22px;backdrop-filter:blur(10px);
+    transform:translateY(14px);opacity:0;transition:.3s ease;pointer-events:none;
+  }
+  #info.on{transform:none;opacity:1}
+  #info .zone{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:9px}
+  #info h2{margin:0 0 10px;font-size:19px;font-weight:600;letter-spacing:-.01em}
+  #info p{margin:0 0 10px;font-size:13.5px;line-height:1.62;color:#b9c5d1}
+  #info ul{margin:8px 0 0;padding-left:17px}
+  #info li{font-size:13px;line-height:1.6;color:#b9c5d1;margin-bottom:5px}
+  #info .num{color:var(--amber);font-weight:600}
+
+  /* нижняя шкала пути */
+  #scale{position:absolute;left:50%;transform:translateX(-50%);bottom:26px;width:min(520px,44vw);pointer-events:none}
+  #scale .bar{height:2px;background:var(--line);position:relative;border-radius:2px}
+  #scale .fill{position:absolute;left:0;top:0;height:100%;background:var(--amber);border-radius:2px;width:0}
+  #scale .lbl{display:flex;justify-content:space-between;margin-top:9px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+
+  #hint{position:absolute;left:50%;transform:translateX(-50%);top:24px;font-size:12px;color:var(--dim);
+    background:rgba(12,16,21,.8);padding:7px 14px;border-radius:20px;border:1px solid var(--line);
+    opacity:0;transition:.4s}
+  #hint.on{opacity:1}
+  #cross{position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;
+    border-radius:50%;border:1px solid rgba(223,230,238,.5);opacity:0;transition:.2s}
+  #cross.on{opacity:1;border-color:var(--amber);background:rgba(240,166,60,.35);
+    width:11px;height:11px;margin:-5.5px 0 0 -5.5px}
+  #open{position:absolute;left:50%;top:calc(50% + 26px);transform:translateX(-50%);
+    background:rgba(12,16,21,.9);border:1px solid var(--amber);color:var(--text);
+    font-size:12.5px;padding:7px 14px;border-radius:6px;opacity:0;transition:.2s;white-space:nowrap}
+  #open.on{opacity:1}
+
+  @media (max-width:820px){
+    #mapwrap{display:none}
+    #info{width:calc(100vw - 48px);bottom:88px}
+    #scale{width:calc(100vw - 48px)}
+    #nav{top:auto;bottom:20px;right:16px;left:16px;justify-content:center}
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="intro">
+  <div class="box">
+    <div class="kicker">Задание на семинар · визуальная стратегия</div>
+    <h1>Маршрут 2028</h1>
+    <p>Персональная стратегия профессионального развития на два года.
+       Роль: продюсер цифровых продуктов и событий. Пространство построено как маршрут:
+       от того, кто я сейчас, через собственные разрывы в компетенциях — к состоянию, в котором
+       я собираю продукт чужими руками, а не своими.</p>
+    <div class="keys">
+      <span><b>W A S D</b>движение</span>
+      <span><b>мышь</b>обзор</span>
+      <span><b>Shift</b>быстрее</span>
+      <span><b>Enter</b>открыть сайт</span>
+      <span><b>Esc</b>курсор</span>
+    </div>
+    <button id="enter">Войти в пространство</button>
+  </div>
+</div>
+
+<div id="hud">
+  <div class="tl">Маршрут 2028<b>Продюсер цифровых продуктов и событий</b></div>
+  <div id="nav"></div>
+  <div id="hint">Иди вперёд по маршруту</div>
+  <div id="cross"></div>
+  <div id="open"></div>
+  <div id="info">
+    <div class="zone"></div>
+    <h2></h2>
+    <div class="body"></div>
+  </div>
+  <div id="scale">
+    <div class="bar"><div class="fill"></div></div>
+    <div class="lbl"><span>сентябрь 2026</span><span>лето 2028</span></div>
+  </div>
+  <div id="mapwrap">
+    <div class="cap">Карта маршрута</div>
+    <canvas id="minimap" width="340" height="420"></canvas>
+  </div>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ================= КОНТЕНТ ================= */
+
+const ROLE = {
+  title:'Продюсер цифровых продуктов и событий',
+  text:'Продюсер отвечает за путь замысла до аудитории целиком: собирает людей и ресурсы, держит срок, бюджет и смысл. Не за свой участок работы, а за результат.',
+  why:[
+    'Собрал и вывел в работу цифровой сервис с платящими пользователями и инфраструктурой из 14 узлов.',
+    'Вёл портал события на 4747 участников и организацию около 170 деловых встреч.',
+    'Построил производственную систему из 14 ИИ-агентов: от исследования до готового медиа.'
+  ],
+  gap:'Но я произвожу сам. Продюсер производит чужими руками. Эти два года — переход от исполнителя к тому, кто собирает.'
+};
+
+const SKILLS = [
+  {n:'Продуктовые гипотезы',      now:6, tgt:8, g:'Продукт'},
+  {n:'Юнит-экономика и P&L',      now:4, tgt:8, g:'Продукт'},
+  {n:'Аналитика воронки',         now:5, tgt:8, g:'Продукт'},
+  {n:'Исследование пользователей',now:3, tgt:7, g:'Продукт'},
+  {n:'Офлайн-события',            now:5, tgt:8, g:'События'},
+  {n:'Цифровые события',          now:3, tgt:7, g:'События'},
+  {n:'Комьюнити и удержание',     now:3, tgt:7, g:'События'},
+  {n:'Партнёрства и спонсоры',    now:2, tgt:7, g:'События'},
+  {n:'ИИ-оркестрация',            now:8, tgt:9, g:'Производство'},
+  {n:'Генеративное видео',        now:6, tgt:8, g:'Производство'},
+  {n:'Веб-продакшен',             now:7, tgt:8, g:'Производство'},
+  {n:'Дизайн-система и вкус',     now:6, tgt:8, g:'Производство'},
+  {n:'Управление командой',       now:3, tgt:7, g:'Управление'},
+  {n:'Переговоры и продажи',      now:5, tgt:8, g:'Управление'},
+  {n:'Право и финансы проекта',   now:3, tgt:7, g:'Управление'},
+  {n:'Публичность и репутация',   now:2, tgt:7, g:'Управление'}
+];
+
+const GAPS = [
+  { t:'Публичность', d:5, from:2, to:7,
+    why:'Продюсера выбирают по репутации и по тому, что о нём знают. Я сделал многое и не рассказал ничего. Для рынка меня не существует.',
+    how:['Публичный дневник производства, два раза в неделю','Развёрнутый разбор кейса с реальными цифрами','Четыре доклада на отраслевых площадках за два года','Два эфира или подкаста как приглашённый']},
+  { t:'Команда', d:4, from:3, to:7,
+    why:'Всё делаю сам и через агентов. Это делает меня быстрым исполнителем и мешает стать продюсером: масштаб упирается в мои сутки.',
+    how:['Первый наёмный человек до конца первого года','Регламент постановки задачи и приёмки работы','Команда из трёх человек к весне 2028','Вывести себя из ежедневного производства']},
+  { t:'Экономика', d:4, from:4, to:8,
+    why:'Есть продукт и есть пользователи, но модель не сходится. Пока я не умею считать деньги проекта, любой запуск — это лотерея.',
+    how:['P&L действующего сервиса за 30 дней','LTV и CAC по каждому каналу привлечения','Операционная безубыточность продукта','Повторить расчёт на втором продукте с нуля']}
+];
+
+const PLAN = [
+  {q:'Q1', d:'осень 2026',  t:'Диагностика',      r:'P&L и метрики сведены, 10 интервью с пользователями, запущен публичный дневник'},
+  {q:'Q2', d:'зима 2027',   t:'Экономика',        r:'Операционная безубыточность, первый наёмный человек, первый доклад'},
+  {q:'Q3', d:'весна 2027',  t:'Событие №1',       r:'Собственное цифровое событие проведено, кейс разобран публично'},
+  {q:'Q4', d:'лето 2027',   t:'Внешняя проверка', r:'Практика в продюсерском центре или студии, собрано портфолио'},
+  {q:'Q5', d:'осень 2027',  t:'Повторяемость',    r:'Второй продукт с нуля за шесть недель по собственному процессу'},
+  {q:'Q6', d:'зима 2028',   t:'Событие №2',       r:'Гибридное событие, 300+ участников, привлечён партнёр'},
+  {q:'Q7', d:'весна 2028',  t:'Команда',          r:'Три человека в команде, я вне ежедневного производства'},
+  {q:'Q8', d:'лето 2028',   t:'Защита',           r:'Диплом как защищённый кейс, выход на роль продюсера'}
+];
+
+
+const WORKS = [
+  {f:'unit.jpg',      t:'UNIT.',                 u:'https://unitdeveloper.com',    k:'Недвижимость',
+   d:'Девелопер на Бали. WordPress-тема, правки заливаются прямо на прод, синк репозитория с боевым сайтом.'},
+  {f:'bso.jpg',       t:'Black Sands Oasis',     u:'https://blacksandsoasis.com',  k:'Недвижимость',
+   d:'Курортный проект. Тёмная версия с видео-героем, отдаётся плагином с чужого WordPress без вреда основному домену.'},
+  {f:'posschitay.jpg',t:'Посчитай свой дом',     u:'https://посчитайсвойдом.рф',   k:'Недвижимость',
+   d:'Дома под ключ. Калькулятор стоимости и заявка, standalone-HTML на своём VPS.'},
+  {f:'invest24.jpg',  t:'инвест24.рф',           u:'https://инвест24.рф',          k:'Недвижимость',
+   d:'Готовый арендный бизнес: торговые центры Пермского края. Калькулятор доходности — то, чего нет у конкурента.'},
+  {f:'skinvest.jpg',  t:'СК-Инвест',             u:'https://halitcan777.github.io/sk-invest-doma/', k:'Недвижимость',
+   d:'Строительство домов: посадка под контекст, расчёт и заявка.'},
+  {f:'dkpark.jpg',    t:'Деловой квартал',       u:'https://dk-park.ru',           k:'Недвижимость',
+   d:'Бизнес-парк из Екатеринбурга. Подбор четырёх площадок в Перми: посадки, генпланы с ТЭП, визуализации.'},
+  {f:'tpark.jpg',     t:'Т.Парк · Торговый дом', u:'https://tpark.global',         k:'Экспорт',
+   d:'Витрина торгового дома и калькулятор экспорта. Выход промышленности на рынок ОАЭ.'},
+  {f:'',              t:'DAPI · Гранты',         u:'',                             k:'Гранты и ИИ',
+   d:'Карта грантов, акселераторов и конкурсов по ИИ на 2026–2027. Новое направление команды, собрано живым поиском.'},
+  {f:'prochno.jpg',   t:'ProchnoVPN',            u:'https://prochnovpn.com',       k:'Свой продукт',
+   d:'Собственный сервис: 14 узлов инфраструктуры, платящие пользователи, бот, мини-приложение и панель.'},
+  {f:'mooveab.jpg',   t:'АБ «Движение»',         u:'https://mooveab.ru',           k:'Архитектура',
+   d:'Платформа для архитектурного бюро: сайт, коммерческое ядро, портфолио и кабинеты с ЭЦП. Четыре продукта в одном.'},
+  {f:'odyssey.jpg',   t:'Одиссей',               u:'https://halitcan777.github.io/odyssey-redesign/', k:'Редизайн',
+   d:'Редизайн сайта спортивного комплекса: собран вручную, без конструктора.'},
+  {f:'gkgun.jpg',     t:'ГК ГУН',                u:'https://gkgun.ru',             k:'Промышленность',
+   d:'Корпоративный сайт на Битриксе: техническое задание, структура, внедрение.'}
+];
+
+const CASES = [
+  {t:'Цифровой сервис',    d:'VPN-сервис: 14 узлов инфраструктуры, платящие пользователи, полный цикл от идеи до поддержки'},
+  {t:'Портал события',     d:'Технопром-2026: портал участников, 4747 человек'},
+  {t:'Деловая программа',  d:'Иннопром: организация около 170 деловых встреч'},
+  {t:'Агентная система',   d:'14 ИИ-агентов и оркестратор: исследование, тексты, медиа, учёт'},
+  {t:'Сайты и лендинги',   d:'DAPI, архитектурное бюро, торговый дом, зарубежные направления'},
+  {t:'Конвейер видео',     d:'Генеративное видео и моушн: от сценария до готового ролика'}
+];
+
+/* ================= СЦЕНА ================= */
+
+const V3 = THREE.Vector3;
+const app = document.getElementById('app');
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x07090c);
+scene.fog = new THREE.Fog(0x07090c, 40, 210);
+
+const camera = new THREE.PerspectiveCamera(62, innerWidth/innerHeight, .1, 800);
+camera.position.set(0, 1.7, 22);
+
+const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+app.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0x5a6878, 1.15));
+const key = new THREE.DirectionalLight(0xdce6f2, 1.0);
+key.position.set(24, 40, 18);
+scene.add(key);
+const rim = new THREE.DirectionalLight(0xf0a63c, .35);
+rim.position.set(-20, 14, -60);
+scene.add(rim);
+
+/* пол и сетка */
+const floor = new THREE.Mesh(
+  new THREE.PlaneGeometry(700, 700),
+  new THREE.MeshStandardMaterial({color:0x0a0d12, roughness:.95, metalness:.05})
+);
+floor.rotation.x = -Math.PI/2;
+scene.add(floor);
+
+const grid = new THREE.GridHelper(700, 175, 0x223040, 0x141b24);
+grid.position.y = .02;
+scene.add(grid);
+
+/* центральная дорога маршрута */
+const ROAD_FROM = 26, ROAD_TO = -250;
+const road = new THREE.Mesh(
+  new THREE.PlaneGeometry(9, ROAD_FROM - ROAD_TO),
+  new THREE.MeshStandardMaterial({color:0x121924, roughness:.85})
+);
+road.rotation.x = -Math.PI/2;
+road.position.set(0, .04, (ROAD_FROM + ROAD_TO)/2);
+scene.add(road);
+
+const edgeMat = new THREE.LineBasicMaterial({color:0x2c3c4c});
+[-4.5, 4.5].forEach(x=>{
+  const g = new THREE.BufferGeometry().setFromPoints([new V3(x,.06,ROAD_FROM), new V3(x,.06,ROAD_TO)]);
+  scene.add(new THREE.Line(g, edgeMat));
+});
+
+/* ---- подписи ---- */
+const LABELS = [];
+function label(text, opts){
+  opts = opts || {};
+  const size = opts.size || 54;
+  const color = opts.color || '#dfe6ee';
+  const weight = opts.weight || 600;
+  const track = opts.track || 0;
+  const pad = 28;
+  const c = document.createElement('canvas');
+  const ctx = c.getContext('2d');
+  const font = weight+' '+size+'px -apple-system, "Segoe UI", Roboto, Arial, sans-serif';
+  ctx.font = font;
+  let w = Math.ceil(ctx.measureText(text).width + track*text.length) + pad*2;
+  c.width = Math.min(w, 2048); c.height = size + pad*2;
+  const c2 = c.getContext('2d');
+  c2.font = font;
+  c2.fillStyle = color;
+  c2.textBaseline = 'middle';
+  if(track){
+    let x = pad;
+    for(const ch of text){ c2.fillText(ch, x, c.height/2); x += c2.measureText(ch).width + track; }
+  } else {
+    c2.fillText(text, pad, c.height/2);
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.anisotropy = 4;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:opts.depthTest!==false}));
+  const scale = (opts.scale || 1) * .012;
+  sp.scale.set(c.width*scale, c.height*scale, 1);
+  LABELS.push({s:sp, far: opts.far || 78, fade: opts.fade || 22});
+  return sp;
+}
+function put(text, x,y,z, opts){
+  const s = label(text, opts);
+  s.position.set(x,y,z);
+  scene.add(s);
+  return s;
+}
+
+/* ---- зона 1: РОЛЬ (монолит слева) ---- */
+const roleGroup = new THREE.Group();
+roleGroup.position.set(-19, 0, -4);
+scene.add(roleGroup);
+
+const monoH = 9;
+const mono = new THREE.Mesh(
+  new THREE.BoxGeometry(3.4, monoH, 1.2),
+  new THREE.MeshStandardMaterial({color:0x18212c, roughness:.6, metalness:.25})
+);
+mono.position.y = monoH/2;
+roleGroup.add(mono);
+const monoEdge = new THREE.LineSegments(
+  new THREE.EdgesGeometry(mono.geometry),
+  new THREE.LineBasicMaterial({color:0xf0a63c})
+);
+monoEdge.position.copy(mono.position);
+roleGroup.add(monoEdge);
+const base = new THREE.Mesh(
+  new THREE.CylinderGeometry(6, 6, .3, 48),
+  new THREE.MeshStandardMaterial({color:0x101720, roughness:.9})
+);
+base.position.y = .1;
+roleGroup.add(base);
+put('РОЛЬ', -19, 13.2, -4, {size:44, color:'#f0a63c', track:14, scale:.9, far:110});
+put('Продюсер цифровых', -19, 11.9, -4, {size:40, color:'#dfe6ee', scale:.85, far:110});
+put('продуктов и событий', -19, 11.0, -4, {size:40, color:'#dfe6ee', scale:.85, far:110});
+
+/* ---- зона 2: КЕЙСЫ (стена справа) ---- */
+const casesGroup = new THREE.Group();
+scene.add(casesGroup);
+
+// текстура-заглушка для работ без снимка
+function cardTexture(title, kind){
+  const c = document.createElement('canvas');
+  c.width = 1024; c.height = 640;
+  const x = c.getContext('2d');
+  const g = x.createLinearGradient(0,0,0,640);
+  g.addColorStop(0,'#141d28'); g.addColorStop(1,'#0b1119');
+  x.fillStyle = g; x.fillRect(0,0,1024,640);
+  x.strokeStyle = '#f0a63c'; x.lineWidth = 3;
+  x.strokeRect(40,40,944,560);
+  x.fillStyle = '#f0a63c';
+  x.font = '600 34px -apple-system, Arial, sans-serif';
+  x.fillText(kind.toUpperCase(), 80, 130);
+  x.fillStyle = '#dfe6ee';
+  x.font = '600 64px -apple-system, Arial, sans-serif';
+  x.fillText(title, 80, 320);
+  x.fillStyle = '#7d8b9a';
+  x.font = '400 30px -apple-system, Arial, sans-serif';
+  x.fillText('внутренний проект команды', 80, 390);
+  return new THREE.CanvasTexture(c);
+}
+
+const loader = new THREE.TextureLoader();
+const STANDS = [];
+const GAL_X0 = 26, GAL_STEP = 8.4, GAL_HALF = 7.4;
+
+// пол галереи
+const galFloor = new THREE.Mesh(
+  new THREE.PlaneGeometry(GAL_STEP*6 + 12, 15),
+  new THREE.MeshStandardMaterial({color:0x0e141c, roughness:.9})
+);
+galFloor.rotation.x = -Math.PI/2;
+galFloor.position.set(GAL_X0 + GAL_STEP*2.5, .05, 0);
+scene.add(galFloor);
+
+WORKS.forEach((w,i)=>{
+  const side = i % 2 === 0 ? -1 : 1;       // -1 — левая стена, +1 — правая
+  const idx  = Math.floor(i/2);
+  const x = GAL_X0 + idx*GAL_STEP;
+  const z = side * GAL_HALF;
+
+  const grp = new THREE.Group();
+  grp.position.set(x, 0, z);
+  grp.rotation.y = side < 0 ? 0 : Math.PI;  // экран смотрит в проход
+  casesGroup.add(grp);
+
+  // рама
+  const frame = new THREE.Mesh(
+    new THREE.BoxGeometry(7.0, 4.6, .35),
+    new THREE.MeshStandardMaterial({color:0x121a24, roughness:.65, metalness:.25})
+  );
+  frame.position.set(0, 3.4, 0);
+  grp.add(frame);
+
+  const fe = new THREE.LineSegments(new THREE.EdgesGeometry(frame.geometry),
+    new THREE.LineBasicMaterial({color:0x33465a}));
+  fe.position.copy(frame.position);
+  grp.add(fe);
+
+  // экран с превью сайта
+  const tex = w.f ? loader.load('tex/'+w.f) : cardTexture(w.t, w.k);
+  if(w.f && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
+  const screen = new THREE.Mesh(
+    new THREE.PlaneGeometry(6.5, 4.06),
+    new THREE.MeshBasicMaterial({map:tex})
+  );
+  screen.position.set(0, 3.4, .19);
+  screen.userData.work = w;
+  grp.add(screen);
+  STANDS.push(screen);
+
+  // ножка
+  const leg = new THREE.Mesh(
+    new THREE.BoxGeometry(1.2, 1.2, .3),
+    new THREE.MeshStandardMaterial({color:0x1a232e, roughness:.8})
+  );
+  leg.position.set(0, .6, 0);
+  grp.add(leg);
+
+  // подписи
+  const nm = label(w.t, {size:34, color:'#dfe6ee', scale:.62, far:46, fade:12});
+  nm.position.set(0, 6.2, .3);
+  grp.add(nm);
+  const kd = label(w.k, {size:26, color:'#f0a63c', scale:.5, far:40, fade:10});
+  kd.position.set(0, 5.6, .3);
+  grp.add(kd);
+});
+
+put('ЗАЛ РАБОТ', GAL_X0 - 4, 8.4, 0, {size:44, color:'#f0a63c', track:12, scale:.85, far:70});
+put('сайты, недвижимость, гранты — открой любой', GAL_X0 - 4, 7.4, 0, {size:30, color:'#7d8b9a', scale:.7, far:60});
+
+// указатель со старта
+put('РАБОТЫ →', 15, 4.2, 6, {size:36, color:'#f0a63c', track:8, scale:.7, far:44});
+
+/* ---- зона 3: КОМПЕТЕНЦИИ (лес колонн) ---- */
+const SK_Z0 = -34, SK_STEP = 7.4;
+const UNIT = 1.15;              // высота одного балла
+SKILLS.forEach((s,i)=>{
+  const side = i % 2 === 0 ? -1 : 1;
+  const row = Math.floor(i/2);
+  const x = side * (row % 2 === 0 ? 8.5 : 14.5);
+  const z = SK_Z0 - row * SK_STEP;
+
+  const hNow = s.now * UNIT;
+  const hTgt = s.tgt * UNIT;
+
+  // текущий уровень — плотный объём
+  const solid = new THREE.Mesh(
+    new THREE.BoxGeometry(2.3, hNow, 2.3),
+    new THREE.MeshStandardMaterial({color:0x2b3a4a, roughness:.55, metalness:.35})
+  );
+  solid.position.set(x, hNow/2, z);
+  scene.add(solid);
+  const se = new THREE.LineSegments(new THREE.EdgesGeometry(solid.geometry),
+    new THREE.LineBasicMaterial({color:0x93a4b8}));
+  se.position.copy(solid.position);
+  scene.add(se);
+
+  // разрыв до цели — светящийся каркас
+  const gapH = hTgt - hNow;
+  if(gapH > .01){
+    const gap = new THREE.Mesh(
+      new THREE.BoxGeometry(2.3, gapH, 2.3),
+      new THREE.MeshBasicMaterial({color:0xf0a63c, transparent:true, opacity:.09})
+    );
+    gap.position.set(x, hNow + gapH/2, z);
+    scene.add(gap);
+    const ge = new THREE.LineSegments(new THREE.EdgesGeometry(gap.geometry),
+      new THREE.LineBasicMaterial({color:0xf0a63c, transparent:true, opacity:.62}));
+    ge.position.copy(gap.position);
+    scene.add(ge);
+  }
+
+  const nm = label(s.n, {size:32, color:'#c8d3de', scale:.8});
+  nm.position.set(x, hTgt + 1.5, z);
+  scene.add(nm);
+  const num = label(s.now+' → '+s.tgt, {size:30, color:'#f0a63c', scale:.8});
+  num.position.set(x, hTgt + .75, z);
+  scene.add(num);
+});
+put('САМОАНАЛИЗ КОМПЕТЕНЦИЙ', 0, 7.2, SK_Z0 + 5, {size:42, color:'#f0a63c', track:10, far:120});
+put('плотный объём — сейчас · контур — цель 2028', 0, 6.2, SK_Z0 + 5, {size:32, color:'#7d8b9a'});
+
+/* ---- зона 4: РАЗРЫВЫ (провалы и мосты) ---- */
+const GAP_Z0 = -104, GAP_STEP = 17;
+GAPS.forEach((g,i)=>{
+  const z = GAP_Z0 - i*GAP_STEP;
+  const w = 3 + g.d*1.5;
+
+  // провал
+  const hole = new THREE.Mesh(
+    new THREE.BoxGeometry(16, 6, w),
+    new THREE.MeshStandardMaterial({color:0x04060a, roughness:1})
+  );
+  hole.position.set(0, -3.02, z);
+  scene.add(hole);
+  const he = new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.PlaneGeometry(16, w)),
+    new THREE.LineBasicMaterial({color:0xf0a63c})
+  );
+  he.rotation.x = -Math.PI/2;
+  he.position.set(0, .07, z);
+  scene.add(he);
+
+  // стенки провала — чтобы читалась глубина
+  const wallGeo = new THREE.BoxGeometry(16, 6, w);
+  const walls = new THREE.LineSegments(
+    new THREE.EdgesGeometry(wallGeo),
+    new THREE.LineBasicMaterial({color:0x6b4a1e})
+  );
+  walls.position.set(0, -3, z);
+  scene.add(walls);
+  for(let k=1;k<6;k++){
+    const rung = new THREE.LineSegments(
+      new THREE.EdgesGeometry(new THREE.PlaneGeometry(16, w)),
+      new THREE.LineBasicMaterial({color:0x3a2a12})
+    );
+    rung.rotation.x = -Math.PI/2;
+    rung.position.set(0, -k, z);
+    scene.add(rung);
+  }
+  const bottom = new THREE.Mesh(
+    new THREE.PlaneGeometry(16, w),
+    new THREE.MeshBasicMaterial({color:0x1a1206})
+  );
+  bottom.rotation.x = -Math.PI/2;
+  bottom.position.set(0, -5.94, z);
+  scene.add(bottom);
+
+  const pl = new THREE.PointLight(0xf0a63c, 2.2, 26);
+  pl.position.set(0, 1.6, z);
+  scene.add(pl);
+
+  // мост через разрыв
+  const bridge = new THREE.Mesh(
+    new THREE.BoxGeometry(3.6, .26, w + 1.6),
+    new THREE.MeshStandardMaterial({color:0x5b7189, roughness:.45, metalness:.55})
+  );
+  bridge.position.set(0, .13, z);
+  scene.add(bridge);
+  const be = new THREE.LineSegments(new THREE.EdgesGeometry(bridge.geometry),
+    new THREE.LineBasicMaterial({color:0xf0a63c}));
+  be.position.copy(bridge.position);
+  scene.add(be);
+
+  const t = label(g.t, {size:46, color:'#f0a63c', scale:.72, far:96});
+  t.position.set(0, 6.1, z);
+  scene.add(t);
+  const sub = label(g.from+' → '+g.to+'   разрыв '+g.d+' из 10', {size:28, color:'#93a4b8', scale:.62, far:80});
+  sub.position.set(0, 5.3, z);
+  scene.add(sub);
+
+  // способы преодоления — столбики по краю
+  g.how.forEach((h,j)=>{
+    const px = (j%2===0 ? -1 : 1) * (7.6 + (j>1?3.4:0));
+    const post = new THREE.Mesh(
+      new THREE.BoxGeometry(.16,3.1,.16),
+      new THREE.MeshBasicMaterial({color:0xf0a63c})
+    );
+    post.position.set(px, 1.55, z + (j<2 ? -2.4 : 2.4));
+    scene.add(post);
+    const hl = label(h, {size:26, color:'#aebecd', scale:.62, far:52, fade:16});
+    hl.position.set(px, 3.9, z + (j<2 ? -2.4 : 2.4));
+    scene.add(hl);
+  });
+});
+put('РАЗРЫВЫ И СПОСОБЫ ИХ ЗАКРЫТЬ', 0, 10.2, GAP_Z0 + 13, {size:42, color:'#f0a63c', track:10, far:120});
+put('три самых широких — через них проложен мост', 0, 7.6, GAP_Z0 + 11, {size:32, color:'#7d8b9a'});
+
+/* ---- зона 5: ПЛАН (вехи по маршруту) ---- */
+const PLAN_Z0 = -166, PLAN_STEP = 9.2;
+PLAN.forEach((p,i)=>{
+  const z = PLAN_Z0 - i*PLAN_STEP;
+  const side = i % 2 === 0 ? -1 : 1;
+  const x = side * 7.6;
+
+  const post = new THREE.Mesh(
+    new THREE.CylinderGeometry(.14,.14,5.2,10),
+    new THREE.MeshStandardMaterial({color:0x93a4b8, roughness:.5, metalness:.5})
+  );
+  post.position.set(x, 2.6, z);
+  scene.add(post);
+
+  const plate = new THREE.Mesh(
+    new THREE.BoxGeometry(6.4, 2.2, .16),
+    new THREE.MeshStandardMaterial({color:0x16202b, roughness:.7, metalness:.25})
+  );
+  plate.position.set(x + side*3.0, 5.4, z);
+  plate.rotation.y = side * -.42;
+  scene.add(plate);
+  const pe = new THREE.LineSegments(new THREE.EdgesGeometry(plate.geometry),
+    new THREE.LineBasicMaterial({color:0x3a4d61}));
+  pe.position.copy(plate.position); pe.rotation.copy(plate.rotation);
+  scene.add(pe);
+
+  const q = label(p.q+' · '+p.d, {size:28, color:'#f0a63c', scale:.75});
+  q.position.set(x + side*3.0, 6.15, z + .4);
+  scene.add(q);
+  const t = label(p.t, {size:40, color:'#dfe6ee', scale:.85});
+  t.position.set(x + side*3.0, 5.3, z + .4);
+  scene.add(t);
+
+  // отметка на дороге
+  const mark = new THREE.Mesh(
+    new THREE.PlaneGeometry(9, .12),
+    new THREE.MeshBasicMaterial({color:0x2c3c4c})
+  );
+  mark.rotation.x = -Math.PI/2;
+  mark.position.set(0, .07, z);
+  scene.add(mark);
+});
+put('ДОРОЖНАЯ КАРТА · 8 КВАРТАЛОВ', 0, 9.2, PLAN_Z0 + 9, {size:42, color:'#f0a63c', track:10, far:120});
+
+/* ---- финал ---- */
+const FIN_Z = PLAN_Z0 - 8*PLAN_STEP - 12;
+const podium = new THREE.Mesh(
+  new THREE.CylinderGeometry(9, 9.6, .6, 56),
+  new THREE.MeshStandardMaterial({color:0x18222d, roughness:.6, metalness:.3})
+);
+podium.position.set(0, .3, FIN_Z);
+scene.add(podium);
+const ring = new THREE.Mesh(
+  new THREE.TorusGeometry(7.2, .08, 8, 80),
+  new THREE.MeshBasicMaterial({color:0xf0a63c})
+);
+ring.rotation.x = -Math.PI/2;
+ring.position.set(0, .65, FIN_Z);
+scene.add(ring);
+put('ЛЕТО 2028', 0, 7.4, FIN_Z, {size:52, color:'#f0a63c', track:14, scale:1.1, far:130});
+put('продюсер, который собирает продукт чужими руками', 0, 6.2, FIN_Z, {size:34, color:'#dfe6ee'});
+put('команда 3 человека · два проведённых события · сходящаяся экономика', 0, 5.4, FIN_Z, {size:28, color:'#7d8b9a'});
+
+/* ================= ЗОНЫ И ПАНЕЛИ ================= */
+
+function skillRows(){
+  const groups = {};
+  SKILLS.forEach(s=>{ (groups[s.g] = groups[s.g] || []).push(s); });
+  let h = '<p>Шестнадцать компетенций в четырёх блоках. Плотный объём — уровень сейчас, светящийся контур над ним — цель к 2028 году. Высота контура и есть дефицит.</p>';
+  for(const g in groups){
+    h += '<p style="margin-bottom:4px"><b style="color:#dfe6ee">'+g+'</b></p><ul>';
+    groups[g].forEach(s=>{
+      h += '<li>'+s.n+' — <span class="num">'+s.now+' → '+s.tgt+'</span></li>';
+    });
+    h += '</ul>';
+  }
+  return h;
+}
+
+const ZONES = [
+  { id:'role', name:'Роль', zone:'Точка 1', title:ROLE.title,
+    pos:new V3(-13, 1.7, -4), look:new V3(-19,5,-4),
+    html:'<p>'+ROLE.text+'</p><p style="color:#dfe6ee">Почему именно я:</p><ul>'+
+         ROLE.why.map(w=>'<li>'+w+'</li>').join('')+'</ul><p style="margin-top:10px;color:#f0a63c">'+ROLE.gap+'</p>' },
+  { id:'cases', name:'Работы', zone:'Точка 2', title:'Зал работ',
+    pos:new V3(GAL_X0 - 6, 1.7, 0), look:new V3(GAL_X0 + 20, 3, 0),
+    html:'<p>Сайты и проекты, сделанные руками. Наведи прицел на стенд и нажми <b style="color:#f0a63c">Enter</b> — сайт откроется в новой вкладке.</p><ul>'+
+         ['Недвижимость и девелопмент — 6 проектов','Экспорт и промышленность — 2','Гранты и ИИ — 1','Свой продукт, архитектура, редизайн — 3'].map(x=>'<li>'+x+'</li>').join('')+'</ul>' },
+  { id:'skills', name:'Компетенции', zone:'Точка 3', title:'Самоанализ компетенций',
+    pos:new V3(0, 1.7, SK_Z0 + 2), look:new V3(0,5,SK_Z0-30),
+    html:skillRows() },
+  { id:'gaps', name:'Разрывы', zone:'Точка 4', title:'Три главных разрыва',
+    pos:new V3(0, 1.7, GAP_Z0 + 17), look:new V3(0,4,GAP_Z0-20),
+    html:GAPS.map(g=>'<p><b style="color:#f0a63c">'+g.t+' · '+g.from+' → '+g.to+'</b><br>'+g.why+'</p><ul>'+
+         g.how.map(h=>'<li>'+h+'</li>').join('')+'</ul>').join('') },
+  { id:'plan', name:'План', zone:'Точка 5', title:'Дорожная карта на 2 года',
+    pos:new V3(0, 1.7, PLAN_Z0 + 6), look:new V3(0,4,PLAN_Z0-60),
+    html:'<ul>'+PLAN.map(p=>'<li><span class="num">'+p.q+' · '+p.d+'</span> — <b style="color:#dfe6ee">'+p.t+'</b><br>'+p.r+'</li>').join('')+'</ul>' },
+  { id:'fin', name:'2028', zone:'Финал', title:'Состояние к лету 2028',
+    pos:new V3(0, 1.7, FIN_Z + 12), look:new V3(0,5,FIN_Z),
+    html:'<p>Я не производю сам каждый артефакт. Я собираю команду, ставлю задачу, принимаю работу и отвечаю за результат перед аудиторией и деньгами.</p>'+
+         '<ul><li>Команда из трёх человек, я вне ежедневного производства</li>'+
+         '<li>Два собственных проведённых события</li>'+
+         '<li>Продукт со сходящейся экономикой</li>'+
+         '<li>Публичный след: дневник, четыре доклада, разобранные кейсы</li>'+
+         '<li>Диплом как защищённый кейс, а не как текст</li></ul>' }
+];
+
+/* ================= УПРАВЛЕНИЕ ================= */
+
+const keys = {};
+let yaw = 0, pitch = -0.05, locked = false, flying = null;
+const vel = new V3();
+
+addEventListener('keydown', e=>{ keys[e.code]=true; });
+addEventListener('keyup',   e=>{ keys[e.code]=false; });
+
+renderer.domElement.addEventListener('click', ()=>{
+  if(!locked && started) renderer.domElement.requestPointerLock();
+});
+document.addEventListener('pointerlockchange', ()=>{
+  locked = document.pointerLockElement === renderer.domElement;
+});
+document.addEventListener('mousemove', e=>{
+  if(!locked) return;
+  yaw   -= e.movementX * .0022;
+  pitch -= e.movementY * .0022;
+  pitch = Math.max(-1.25, Math.min(1.25, pitch));
+});
+
+addEventListener('resize', ()=>{
+  camera.aspect = innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+/* кнопки перелёта */
+const nav = document.getElementById('nav');
+ZONES.forEach(z=>{
+  const b = document.createElement('button');
+  b.textContent = z.name;
+  b.dataset.id = z.id;
+  b.onclick = ()=>{ flyTo(z); };
+  nav.appendChild(b);
+});
+
+function flyTo(z){
+  flying = {from:camera.position.clone(), to:z.pos.clone(), t:0,
+            yawFrom:yaw, yawTo:Math.atan2(z.pos.x - z.look.x, z.pos.z - z.look.z),
+            pitchFrom:pitch, pitchTo:-0.06};
+  showInfo(z);
+}
+
+/* инфопанель */
+const info = document.getElementById('info');
+let curZone = null;
+function showInfo(z){
+  if(curZone === z.id) return;
+  curZone = z.id;
+  info.querySelector('.zone').textContent = z.zone;
+  info.querySelector('h2').textContent = z.title;
+  info.querySelector('.body').innerHTML = z.html;
+  info.classList.add('on');
+  [...nav.children].forEach(b=> b.classList.toggle('act', b.dataset.id === z.id));
+}
+function hideInfo(){
+  if(!curZone) return;
+  curZone = null;
+  info.classList.remove('on');
+  [...nav.children].forEach(b=> b.classList.remove('act'));
+}
+
+/* мини-карта */
+const mm = document.getElementById('minimap');
+const mctx = mm.getContext('2d');
+function drawMap(){
+  const W = mm.width, H = mm.height;
+  mctx.clearRect(0,0,W,H);
+  const z0 = 30, z1 = FIN_Z - 15;
+  const toY = z => (z0 - z)/(z0 - z1) * (H-30) + 15;
+  const toX = x => W/2 + x*2.6;
+
+  mctx.strokeStyle = '#2c3c4c'; mctx.lineWidth = 6;
+  mctx.beginPath(); mctx.moveTo(toX(0), toY(26)); mctx.lineTo(toX(0), toY(FIN_Z)); mctx.stroke();
+
+  mctx.fillStyle = '#f0a63c';
+  ZONES.forEach(z=>{
+    mctx.beginPath(); mctx.arc(toX(z.pos.x), toY(z.pos.z), 4, 0, 7); mctx.fill();
+  });
+  // игрок
+  const px = toX(camera.position.x), py = toY(camera.position.z);
+  mctx.fillStyle = '#ffffff';
+  mctx.beginPath(); mctx.arc(px, py, 5.5, 0, 7); mctx.fill();
+  mctx.strokeStyle = '#ffffff'; mctx.lineWidth = 2;
+  mctx.beginPath(); mctx.moveTo(px, py);
+  mctx.lineTo(px + Math.sin(yaw)*-14, py + Math.cos(yaw)*-14);
+  mctx.stroke();
+}
+
+const fill = document.querySelector('#scale .fill');
+const hint = document.getElementById('hint');
+
+/* затухание подписей по расстоянию — иначе дальние надписи наезжают друг на друга */
+function updateLabels(){
+  for(let i=0;i<LABELS.length;i++){
+    const L = LABELS[i];
+    const d = camera.position.distanceTo(L.s.position);
+    if(d > L.far){ L.s.visible = false; continue; }
+    L.s.visible = true;
+    L.s.material.opacity = Math.min(1, Math.max(0, (L.far - d)/L.fade));
+  }
+}
+
+/* ---- прицел по стендам работ ---- */
+const ray = new THREE.Raycaster();
+const cross = document.getElementById('cross');
+const openTip = document.getElementById('open');
+let aimed = null;
+
+function updateAim(){
+  ray.setFromCamera({x:0,y:0}, camera);
+  const hit = ray.intersectObjects(STANDS, false)[0];
+  const found = (hit && hit.distance < 16) ? hit.object : null;
+  if(found !== aimed){
+    if(aimed) aimed.scale.set(1,1,1);
+    aimed = found;
+    if(aimed){
+      aimed.scale.set(1.03,1.03,1);
+      const w = aimed.userData.work;
+      openTip.textContent = w.u ? 'Enter — открыть ' + w.u.replace(/^https?:\/\//,'') : w.t + ' — внутренний проект';
+      openTip.classList.add('on');
+      cross.classList.add('on');
+      showWork(w);
+    } else {
+      openTip.classList.remove('on');
+      cross.classList.remove('on');
+    }
+  }
+}
+
+function showWork(w){
+  info.querySelector('.zone').textContent = w.k;
+  info.querySelector('h2').textContent = w.t;
+  info.querySelector('.body').innerHTML = '<p>'+w.d+'</p>'+
+    (w.u ? '<p style="color:#f0a63c">'+w.u.replace(/^https?:\/\//,'')+'</p>' : '');
+  info.classList.add('on');
+  curZone = 'work:'+w.t;
+}
+
+addEventListener('keydown', e=>{
+  if(e.code === 'Enter' && aimed && aimed.userData.work.u){
+    window.open(aimed.userData.work.u, '_blank', 'noopener');
+  }
+});
+
+/* ================= ЦИКЛ ================= */
+
+let started = false, last = performance.now();
+
+function tick(now){
+  requestAnimationFrame(tick);
+  const dt = Math.min((now - last)/1000, .05);
+  last = now;
+
+  if(flying){
+    flying.t = Math.min(1, flying.t + dt/1.5);
+    const e = flying.t<.5 ? 2*flying.t*flying.t : 1-Math.pow(-2*flying.t+2,2)/2;
+    camera.position.lerpVectors(flying.from, flying.to, e);
+    yaw   = flying.yawFrom   + (flying.yawTo   - flying.yawFrom)*e;
+    pitch = flying.pitchFrom + (flying.pitchTo - flying.pitchFrom)*e;
+    if(flying.t >= 1) flying = null;
+  } else if(started){
+    const sp = (keys.ShiftLeft || keys.ShiftRight) ? 26 : 11;
+    const fwd = (keys.KeyW||keys.ArrowUp?1:0) - (keys.KeyS||keys.ArrowDown?1:0);
+    const str = (keys.KeyD||keys.ArrowRight?1:0) - (keys.KeyA||keys.ArrowLeft?1:0);
+    const dir = new V3(
+      Math.sin(yaw)*-fwd + Math.cos(yaw)*str,
+      0,
+      Math.cos(yaw)*-fwd - Math.sin(yaw)*str
+    );
+    if(dir.lengthSq()>0) dir.normalize();
+    vel.lerp(dir.multiplyScalar(sp), 1 - Math.pow(.002, dt));
+    camera.position.addScaledVector(vel, dt);
+    camera.position.y = 1.7;
+    camera.position.x = Math.max(-46, Math.min(80, camera.position.x));
+    camera.position.z = Math.max(FIN_Z - 26, Math.min(34, camera.position.z));
+  }
+
+  camera.rotation.set(0,0,0);
+  camera.rotateY(yaw);
+  camera.rotateX(pitch);
+
+  updateLabels();
+  if(started) updateAim();
+
+  // ближайшая зона
+  let near = null, nd = 1e9;
+  ZONES.forEach(z=>{
+    const d = camera.position.distanceTo(z.pos);
+    if(d < nd){ nd = d; near = z; }
+  });
+  if(!aimed){ if(nd < 17) showInfo(near); else if(nd > 26) hideInfo(); }
+
+  // прогресс по маршруту
+  const p = Math.max(0, Math.min(1, (26 - camera.position.z)/(26 - FIN_Z)));
+  fill.style.width = (p*100).toFixed(1)+'%';
+
+  drawMap();
+  renderer.render(scene, camera);
+}
+requestAnimationFrame(tick);
+
+/* отладочный доступ (снятие кадров, перелёты) */
+window.__view = {
+  get camera(){return camera}, get renderer(){return renderer}, scene:scene,
+  zones:ZONES, flyTo:flyTo, start:()=>{started=true;},
+  place:(x,z,yw,pt)=>{camera.position.set(x,1.7,z); yaw=yw; pitch=pt||-.05; flying=null;
+    const e={position:camera.position}; },
+  refresh:()=>updateLabels(),
+  shot:()=>{ updateLabels(); renderer.render(scene,camera); return renderer.domElement.toDataURL('image/png'); }
+};
+
+/* старт */
+document.getElementById('enter').onclick = ()=>{
+  const intro = document.getElementById('intro');
+  intro.style.opacity = 0;
+  setTimeout(()=>{ intro.style.display='none'; }, 600);
+  document.getElementById('hud').classList.add('on');
+  started = true;
+  renderer.domElement.requestPointerLock();
+  hint.classList.add('on');
+  setTimeout(()=>hint.classList.remove('on'), 5000);
+};
+
+})();
+</script>
+</body>
+</html>
