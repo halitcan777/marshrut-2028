@@ -177,6 +177,8 @@ const SKILLS = [
   {n:'Генеративное видео',        now:6, tgt:8, g:'Производство'},
   {n:'Веб-продакшен',             now:7, tgt:8, g:'Производство'},
   {n:'Дизайн-система и вкус',     now:6, tgt:8, g:'Производство'},
+  {n:'Айдентика и брендинг',      now:4, tgt:8, g:'Айдентика'},
+  {n:'Фирменный стиль в медиа',   now:3, tgt:7, g:'Айдентика'},
   {n:'Управление командой',       now:3, tgt:7, g:'Управление'},
   {n:'Переговоры и продажи',      now:5, tgt:8, g:'Управление'},
   {n:'Право и финансы проекта',   now:3, tgt:7, g:'Управление'},
@@ -217,29 +219,27 @@ const PLAN = [
 
 const WORKS = [
   {f:'unit.jpg',      t:'UNIT.',                 u:'https://unitdeveloper.com',    k:'Недвижимость',
-   d:'Девелопер на Бали. WordPress-тема, правки заливаются прямо на прод, синк репозитория с боевым сайтом.'},
+   d:'Девелопер вилл на Бали. Ведём тему целиком: правки заливаются прямо на прод, репозиторий синхронизируется с боевым сайтом.'},
   {f:'bso.jpg',       t:'Black Sands Oasis',     u:'https://blacksandsoasis.com',  k:'Недвижимость',
-   d:'Курортный проект. Тёмная версия с видео-героем, отдаётся плагином с чужого WordPress без вреда основному домену.'},
+   d:'Флагманский проект UNIT. Тёмная версия с видео-героем, отдаётся плагином с того же WordPress, не задевая основной домен.'},
   {f:'posschitay.jpg',t:'Посчитай свой дом',     u:'https://посчитайсвойдом.рф',   k:'Недвижимость',
-   d:'Дома под ключ. Калькулятор стоимости и заявка, standalone-HTML на своём VPS.'},
+   d:'Дома под ключ в Перми. Калькулятор стоимости и заявка, собран вручную и лежит на своём сервере.'},
   {f:'invest24.jpg',  t:'инвест24.рф',           u:'https://инвест24.рф',          k:'Недвижимость',
-   d:'Готовый арендный бизнес: торговые центры Пермского края. Калькулятор доходности — то, чего нет у конкурента.'},
+   d:'Готовый арендный бизнес: торговые центры Пермского края с сетевыми арендаторами. Калькулятор доходности — то, чего нет у конкурентов.'},
   {f:'skinvest.jpg',  t:'СК-Инвест',             u:'https://halitcan777.github.io/sk-invest-doma/', k:'Недвижимость',
-   d:'Строительство домов: посадка под контекст, расчёт и заявка.'},
-  {f:'dkpark.jpg',    t:'Деловой квартал',       u:'https://dk-park.ru',           k:'Недвижимость',
-   d:'Бизнес-парк из Екатеринбурга. Подбор четырёх площадок в Перми: посадки, генпланы с ТЭП, визуализации.'},
+   d:'Посадочная под контекстную рекламу: оффер, расчёт, заявка. Версия для сравнения с основным сайтом.'},
   {f:'tpark.jpg',     t:'Т.Парк · Торговый дом', u:'https://tpark.global',         k:'Экспорт',
-   d:'Витрина торгового дома и калькулятор экспорта. Выход промышленности на рынок ОАЭ.'},
+   d:'Витрина торгового дома и калькулятор экспорта. Помогает промышленности выйти на рынок ОАЭ.'},
   {f:'',              t:'DAPI · Гранты',         u:'',                             k:'Гранты и ИИ',
-   d:'Карта грантов, акселераторов и конкурсов по ИИ на 2026–2027. Новое направление команды, собрано живым поиском.'},
+   d:'Новое направление команды: карта грантов, акселераторов и конкурсов по ИИ на 2026–2027. Собрана живым поиском, а не скачана.'},
   {f:'prochno.jpg',   t:'ProchnoVPN',            u:'https://prochnovpn.com',       k:'Свой продукт',
-   d:'Собственный сервис: 14 узлов инфраструктуры, платящие пользователи, бот, мини-приложение и панель.'},
+   d:'Единственный проект, где я одновременно продукт, инфраструктура, поддержка и деньги. Подробный разбор — на отдельном стенде дальше по залу.'},
   {f:'mooveab.jpg',   t:'АБ «Движение»',         u:'https://mooveab.ru',           k:'Архитектура',
-   d:'Платформа для архитектурного бюро: сайт, коммерческое ядро, портфолио и кабинеты с ЭЦП. Четыре продукта в одном.'},
-  {f:'odyssey.jpg',   t:'Одиссей',               u:'https://halitcan777.github.io/odyssey-redesign/', k:'Редизайн',
-   d:'Редизайн сайта спортивного комплекса: собран вручную, без конструктора.'},
+   d:'Платформа для архитектурного бюро: сайт, коммерческое ядро, портфолио и кабинеты с подписью документов. Четыре продукта под одной крышей.'},
+  {f:'odyssey.jpg',   t:'СК «Одиссей»',          u:'https://gpodyssey.ru',         k:'Редизайн',
+   d:'Редизайн сайта спортивного комплекса: структура, вёрстка и сборка вручную, без конструктора.'},
   {f:'gkgun.jpg',     t:'ГК ГУН',                u:'https://gkgun.ru',             k:'Промышленность',
-   d:'Корпоративный сайт на Битриксе: техническое задание, структура, внедрение.'}
+   d:'Корпоративный сайт на Битриксе: техническое задание, структура разделов, внедрение.'}
 ];
 
 const CASES = [
@@ -258,7 +258,7 @@ const app = document.getElementById('app');
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(62, innerWidth/innerHeight, .1, 900);
-camera.position.set(0, 1.7, 22);
+camera.position.set(0, 1.7, 42);
 
 const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -272,23 +272,66 @@ app.appendChild(renderer.domElement);
 
 scene.fog = new THREE.FogExp2(0x070b11, 0.0062);
 
-/* небосвод — мягкий вертикальный градиент вместо плоской заливки */
-const skyGeo = new THREE.SphereGeometry(420, 32, 20);
+/* небо: градиент + слоистые облака */
+const skyGeo = new THREE.SphereGeometry(460, 48, 32);
 const skyMat = new THREE.ShaderMaterial({
   side: THREE.BackSide, depthWrite:false,
-  uniforms:{ top:{value:new THREE.Color(0x0d1622)}, bottom:{value:new THREE.Color(0x05070b)},
-             horizon:{value:new THREE.Color(0x16202c)} },
+  uniforms:{ uTime:{value:0} },
   vertexShader:'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
   fragmentShader:[
-   'uniform vec3 top; uniform vec3 bottom; uniform vec3 horizon; varying vec3 vP;',
+   'uniform float uTime; varying vec3 vP;',
+   'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }',
+   'float noise(vec2 p){',
+   '  vec2 i = floor(p), f = fract(p);',
+   '  vec2 u = f*f*(3.0-2.0*f);',
+   '  return mix(mix(hash(i), hash(i+vec2(1,0)), u.x),',
+   '             mix(hash(i+vec2(0,1)), hash(i+vec2(1,1)), u.x), u.y);',
+   '}',
+   'float fbm(vec2 p){',
+   '  float v = 0.0, a = 0.5;',
+   '  for(int i=0;i<5;i++){ v += a*noise(p); p *= 2.03; a *= 0.5; }',
+   '  return v;',
+   '}',
    'void main(){',
-   '  float h = normalize(vP).y;',
-   '  vec3 c = mix(horizon, top, smoothstep(0.0, 0.55, h));',
-   '  c = mix(bottom, c, smoothstep(-0.35, 0.06, h));',
-   '  gl_FragColor = vec4(c, 1.0);',
+   '  vec3 d = normalize(vP);',
+   '  float h = d.y;',
+   '  vec3 zenith  = vec3(0.043,0.075,0.125);',
+   '  vec3 horizon = vec3(0.105,0.145,0.200);',
+   '  vec3 ground  = vec3(0.016,0.024,0.036);',
+   '  vec3 col = mix(horizon, zenith, smoothstep(0.0, 0.75, h));',
+   '  col = mix(ground, col, smoothstep(-0.28, 0.05, h));',
+   '  // тёплое зарево у горизонта со стороны маршрута',
+   '  float warm = pow(max(0.0, 1.0 - abs(h)*3.4), 3.0) * max(0.0, -d.z) * 0.55;',
+   '  col += vec3(0.42,0.26,0.10) * warm;',
+   '  // облака — только выше линии горизонта',
+   '  if(h > 0.02){',
+   '    vec2 uv = d.xz / (h + 0.32);',
+   '    float c1 = fbm(uv*1.5 + vec2(uTime*0.0055, uTime*0.0021));',
+   '    float c2 = fbm(uv*3.1 - vec2(uTime*0.0032, 0.0));',
+   '    float cl = smoothstep(0.52, 0.94, c1*0.68 + c2*0.36);',
+   '    cl *= smoothstep(0.02, 0.34, h);',
+   '    vec3 cloudCol = mix(vec3(0.13,0.17,0.24), vec3(0.30,0.36,0.45), c1);',
+   '    cloudCol += vec3(0.30,0.19,0.07) * warm * 1.6;',
+   '    col = mix(col, cloudCol, cl*0.85);',
+   '  }',
+   '  // редкие звёзды в зените',
+   '  float st = step(0.9975, hash(floor(d.xz*260.0))) * smoothstep(0.25, 0.7, h);',
+   '  col += vec3(st*0.5);',
+   '  gl_FragColor = vec4(col, 1.0);',
    '}'].join('\n')
 });
-scene.add(new THREE.Mesh(skyGeo, skyMat));
+const sky = new THREE.Mesh(skyGeo, skyMat);
+scene.add(sky);
+
+/* карта окружения — чтобы металл и стекло отражали небо */
+try {
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  pmrem.compileEquirectangularShader();
+  const envScene = new THREE.Scene();
+  envScene.add(new THREE.Mesh(skyGeo.clone(), skyMat.clone()));
+  scene.environment = pmrem.fromScene(envScene, .06).texture;
+  pmrem.dispose();
+} catch(e){ /* если не поддержано — просто без отражений */ }
 
 /* свет */
 scene.add(new THREE.HemisphereLight(0x7c9ec0, 0x0a0f16, .52));
@@ -337,7 +380,7 @@ function floorTexture(){
 }
 const floor = new THREE.Mesh(
   new THREE.PlaneGeometry(760, 760),
-  new THREE.MeshStandardMaterial({map:floorTexture(), color:0x76858f, roughness:.9, metalness:.1})
+  new THREE.MeshStandardMaterial({map:floorTexture(), color:0x7d8c98, roughness:.55, metalness:.42, envMapIntensity:.7})
 );
 floor.rotation.x = -Math.PI/2;
 scene.add(floor);
@@ -393,7 +436,7 @@ function glow(x,y,z,size,color,op){
 const ROAD_FROM = 26, ROAD_TO = -250;
 const road = new THREE.Mesh(
   new THREE.PlaneGeometry(9, ROAD_FROM - ROAD_TO),
-  new THREE.MeshStandardMaterial({color:0x161f2b, roughness:.72, metalness:.18})
+  new THREE.MeshStandardMaterial({color:0x18222f, roughness:.34, metalness:.6, envMapIntensity:.9})
 );
 road.rotation.x = -Math.PI/2;
 road.position.set(0, .04, (ROAD_FROM + ROAD_TO)/2);
@@ -470,6 +513,135 @@ function put(text, x,y,z, opts){
   scene.add(s);
   return s;
 }
+
+/* ---- баннер-схема на месте старта ---- */
+function routeMapTexture(){
+  const W = 2048, H = 1160;
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d');
+
+  const bg = x.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#0d151f'); bg.addColorStop(1,'#070b11');
+  x.fillStyle = bg; x.fillRect(0,0,W,H);
+
+  x.strokeStyle = 'rgba(240,166,60,.5)'; x.lineWidth = 5;
+  x.strokeRect(26,26,W-52,H-52);
+
+  x.fillStyle = '#f0a63c';
+  x.font = '700 40px -apple-system, Arial, sans-serif';
+  x.fillText('СХЕМА В 3D — ГУЛЯЙ И ИЗУЧАЙ', 90, 128);
+
+  x.fillStyle = '#eef3f8';
+  x.font = '700 96px -apple-system, Arial, sans-serif';
+  x.fillText('Маршрут 2028', 90, 246);
+
+  x.fillStyle = '#93a4b8';
+  x.font = '400 40px -apple-system, Arial, sans-serif';
+  x.fillText('Персональная стратегия повышения квалификации на два года.', 90, 316);
+  x.fillText('Роль: продюсер цифровых продуктов и событий.', 90, 372);
+
+  // линия маршрута
+  const y = 570, x0 = 130, x1 = W-130;
+  x.strokeStyle = 'rgba(147,164,184,.35)'; x.lineWidth = 6;
+  x.beginPath(); x.moveTo(x0,y); x.lineTo(x1,y); x.stroke();
+
+  const pts = [
+    ['1','Роль',        'кем становлюсь'],
+    ['2','Зал работ',   'что уже сделано'],
+    ['3','Компетенции', 'что умею сейчас'],
+    ['4','Разрывы',     'чего не хватает'],
+    ['5','План',        '8 шагов до 2028'],
+    ['6','Итог',        'чем проверю себя']
+  ];
+  const step = (x1-x0)/(pts.length-1);
+  pts.forEach((p,i)=>{
+    const px = x0 + step*i;
+    x.beginPath(); x.arc(px, y, 34, 0, 7);
+    x.fillStyle = '#f0a63c'; x.fill();
+    x.fillStyle = '#0a0d11';
+    x.font = '700 36px -apple-system, Arial, sans-serif';
+    x.textAlign = 'center';
+    x.fillText(p[0], px, y+13);
+    x.fillStyle = '#eef3f8';
+    x.font = '600 40px -apple-system, Arial, sans-serif';
+    x.fillText(p[1], px, y-72);
+    x.fillStyle = '#7d8b9a';
+    x.font = '400 30px -apple-system, Arial, sans-serif';
+    x.fillText(p[2], px, y+92);
+    x.textAlign = 'left';
+  });
+
+  // как читать пространство
+  x.fillStyle = '#f0a63c';
+  x.font = '700 34px -apple-system, Arial, sans-serif';
+  x.fillText('КАК ЧИТАТЬ ПРОСТРАНСТВО', 90, 800);
+
+  const legend = [
+    ['Колонна', 'высота — уровень сейчас, светящийся контур сверху — сколько не хватает до цели'],
+    ['Провал в полу', 'разрыв между «есть» и «нужно». Через него переброшен мост — план, как закрыть'],
+    ['Экран в зале', 'реальный сайт. Наведи прицел, нажми Enter — откроется в новой вкладке'],
+    ['Круг на полу', 'узловая точка маршрута. Номер совпадает со схемой выше']
+  ];
+  legend.forEach((L,i)=>{
+    const ly = 866 + i*66;
+    x.fillStyle = '#f0a63c'; x.fillRect(90, ly-22, 8, 28);
+    x.fillStyle = '#dfe6ee';
+    x.font = '600 34px -apple-system, Arial, sans-serif';
+    x.fillText(L[0], 118, ly);
+    x.fillStyle = '#93a4b8';
+    x.font = '400 31px -apple-system, Arial, sans-serif';
+    x.fillText(L[1], 118 + x.measureText(L[0]).width + 190, ly);
+  });
+
+  x.fillStyle = '#5f6d7c';
+  x.font = '400 28px -apple-system, Arial, sans-serif';
+  x.fillText('W A S D — идти · мышь — смотреть · Shift — бежать · Enter — открыть сайт · Esc — курсор', 90, H-64);
+
+  const t = new THREE.CanvasTexture(c);
+  t.anisotropy = 8;
+  if(THREE.SRGBColorSpace) t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+const bannerGrp = new THREE.Group();
+bannerGrp.position.set(0, 0, 14);
+scene.add(bannerGrp);
+
+const bannerBack = new THREE.Mesh(
+  new THREE.BoxGeometry(23, 13.4, .5),
+  new THREE.MeshStandardMaterial({color:0x0f1720, roughness:.45, metalness:.5, envMapIntensity:.8})
+);
+bannerBack.position.set(0, 8.8, 0);
+bannerGrp.add(bannerBack);
+
+const bannerFace = new THREE.Mesh(
+  new THREE.PlaneGeometry(22, 12.4),
+  new THREE.MeshBasicMaterial({map:routeMapTexture()})
+);
+bannerFace.position.set(0, 8.8, .27);
+bannerGrp.add(bannerFace);
+
+const bannerEdge = new THREE.LineSegments(
+  new THREE.EdgesGeometry(bannerBack.geometry),
+  new THREE.LineBasicMaterial({color:0xf0a63c})
+);
+bannerEdge.position.copy(bannerBack.position);
+bannerGrp.add(bannerEdge);
+
+[-10.4, 10.4].forEach(px=>{
+  const leg = new THREE.Mesh(
+    new THREE.CylinderGeometry(.28,.34,2.6,10),
+    new THREE.MeshStandardMaterial({color:0x2a3542, roughness:.5, metalness:.6})
+  );
+  leg.position.set(px, 1.3, 0);
+  bannerGrp.add(leg);
+});
+shadowBlob(0, 14, 13);
+[-8,0,8].forEach(px=>{
+  const wash = new THREE.PointLight(0xffd2a0, .5, 16, 2);
+  wash.position.set(px, 3.4, 17.5);
+  scene.add(wash);
+});
 
 /* ---- зона 1: РОЛЬ (монолит слева) ---- */
 const roleGroup = new THREE.Group();
@@ -603,6 +775,126 @@ put('наведи прицел на экран и нажми Enter — сайт 
 
 // указатель со старта
 put('РАБОТЫ →', 15, 4.2, 6, {size:36, color:'#f0a63c', track:8, scale:.7, far:44});
+
+/* ---- отдельный стенд: разбор ProchnoVPN ---- */
+const VPN = {
+  title:'ProchnoVPN — разбор',
+  sub:'единственный проект, где я отвечаю за всё сразу',
+  cols:[
+    ['Что это',
+     ['VPN-сервис для людей в России, которым перестали работать привычные способы.',
+      'Телеграм-бот вместо приложения: оплата, ключ и поддержка в одном окне.',
+      'Мини-приложение и панель управления устройствами.']],
+    ['Что под капотом',
+     ['14 узлов: входы в России и выходы за границей, связанные туннелями.',
+      'Обход блокировок: маскировка трафика, свои домены-якоря, запасные маршруты.',
+      'Мониторинг и автопереключение, когда узел умирает.']],
+    ['Чем занимаюсь я',
+     ['Продукт: что делаем дальше и чего не делаем никогда.',
+      'Инфраструктура: сервера, деньги за трафик, аварии по ночам.',
+      'Поддержка живых людей и разбор их жалоб.',
+      'Реклама, воронка, цены и возвраты.']],
+    ['Чему научил',
+     ['Работающая услуга важнее красивой архитектуры.',
+      'Пользователь не читает инструкцию — он пишет «не работает».',
+      'Трафик — главная статья расходов, и она растёт быстрее выручки.',
+      'Пока не сведён P&L, рост продаж может увеличивать убыток.']]
+  ],
+  gapline:'Слабое место проекта — ровно то же, что и моё: держится на одном человеке и не имеет сходящейся экономики. Оба разрыва закрываются в первый год плана.'
+};
+
+function vpnPanelTexture(){
+  const W = 2400, H = 1200;
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d');
+  const bg = x.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#0e1620'); bg.addColorStop(1,'#080c12');
+  x.fillStyle = bg; x.fillRect(0,0,W,H);
+  x.strokeStyle = 'rgba(240,166,60,.55)'; x.lineWidth = 5;
+  x.strokeRect(24,24,W-48,H-48);
+
+  x.fillStyle = '#f0a63c';
+  x.font = '700 38px -apple-system, Arial, sans-serif';
+  x.fillText('ОТДЕЛЬНЫЙ КЕЙС', 80, 116);
+  x.fillStyle = '#eef3f8';
+  x.font = '700 82px -apple-system, Arial, sans-serif';
+  x.fillText(VPN.title, 80, 210);
+  x.fillStyle = '#93a4b8';
+  x.font = '400 36px -apple-system, Arial, sans-serif';
+  x.fillText(VPN.sub, 80, 268);
+
+  const colW = (W - 160) / 4;
+  VPN.cols.forEach((col,i)=>{
+    const cx = 80 + colW*i;
+    x.fillStyle = '#f0a63c';
+    x.fillRect(cx, 340, 46, 5);
+    x.fillStyle = '#dfe6ee';
+    x.font = '600 42px -apple-system, Arial, sans-serif';
+    x.fillText(col[0], cx, 412);
+    x.fillStyle = '#a8b6c4';
+    x.font = '400 29px -apple-system, Arial, sans-serif';
+    let yy = 476;
+    col[1].forEach(line=>{
+      const words = line.split(' ');
+      let cur = '';
+      words.forEach(w=>{
+        const test = cur ? cur+' '+w : w;
+        if(x.measureText(test).width > colW - 70){
+          x.fillText(cur, cx, yy); yy += 40; cur = w;
+        } else cur = test;
+      });
+      if(cur){ x.fillText(cur, cx, yy); yy += 40; }
+      yy += 18;
+    });
+  });
+
+  x.fillStyle = 'rgba(240,166,60,.12)';
+  x.fillRect(80, H-180, W-160, 96);
+  x.fillStyle = '#f0a63c';
+  x.font = '400 31px -apple-system, Arial, sans-serif';
+  const words = VPN.gapline.split(' ');
+  let cur = '', yy = H-124;
+  words.forEach(w=>{
+    const test = cur ? cur+' '+w : w;
+    if(x.measureText(test).width > W - 240){ x.fillText(cur, 112, yy); yy += 42; cur = w; }
+    else cur = test;
+  });
+  if(cur) x.fillText(cur, 112, yy);
+
+  const t = new THREE.CanvasTexture(c);
+  t.anisotropy = 8;
+  if(THREE.SRGBColorSpace) t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+const VPN_X = GAL_X0 + GAL_STEP*6 + 6;
+const vpnGrp = new THREE.Group();
+vpnGrp.position.set(VPN_X, 0, 0);
+vpnGrp.rotation.y = -Math.PI/2;
+scene.add(vpnGrp);
+
+const vpnBack = new THREE.Mesh(
+  new THREE.BoxGeometry(22, 11.4, .5),
+  new THREE.MeshStandardMaterial({color:0x101823, roughness:.4, metalness:.55, envMapIntensity:.9})
+);
+vpnBack.position.set(0, 7.2, 0);
+vpnGrp.add(vpnBack);
+const vpnFace = new THREE.Mesh(
+  new THREE.PlaneGeometry(21, 10.5),
+  new THREE.MeshBasicMaterial({map:vpnPanelTexture()})
+);
+vpnFace.position.set(0, 7.2, .27);
+vpnGrp.add(vpnFace);
+const vpnEdge = new THREE.LineSegments(new THREE.EdgesGeometry(vpnBack.geometry),
+  new THREE.LineBasicMaterial({color:0xf0a63c}));
+vpnEdge.position.copy(vpnBack.position);
+vpnGrp.add(vpnEdge);
+[-8,0,8].forEach(pz=>{
+  const l = new THREE.PointLight(0xffd2a0, .42, 15, 2);
+  l.position.set(VPN_X - 4, 4, pz);
+  scene.add(l);
+});
+shadowBlob(VPN_X, 0, 12);
 
 /* ---- зона 3: КОМПЕТЕНЦИИ (лес колонн) ---- */
 const SK_Z0 = -34, SK_STEP = 7.4;
@@ -828,6 +1120,10 @@ const ZONES = [
     pos:new V3(GAL_X0 - 6, 1.7, 0), look:new V3(GAL_X0 + 20, 3, 0),
     html:'<p>Сайты и проекты, сделанные руками. Наведи прицел на стенд и нажми <b style="color:#f0a63c">Enter</b> — сайт откроется в новой вкладке.</p><ul>'+
          ['Недвижимость и девелопмент — 6 проектов','Экспорт и промышленность — 2','Гранты и ИИ — 1','Свой продукт, архитектура, редизайн — 3'].map(x=>'<li>'+x+'</li>').join('')+'</ul>' },
+  { id:'vpn', name:'ProchnoVPN', zone:'Отдельный кейс', title:'ProchnoVPN — разбор',
+    pos:new V3(VPN_X - 13, 1.7, 0), look:new V3(VPN_X, 5, 0),
+    html:'<p>Проект, где я одновременно продукт, инфраструктура, поддержка и деньги. Полный разбор — на стенде: что это, что под капотом, чем занимаюсь лично и чему научило.</p>'+
+         '<p style="color:#f0a63c">Слабое место проекта то же, что и моё: держится на одном человеке и не имеет сходящейся экономики.</p>' },
   { id:'skills', name:'Компетенции', zone:'Точка 3', title:'Самоанализ компетенций',
     pos:new V3(0, 1.7, SK_Z0 + 2), look:new V3(0,5,SK_Z0-30),
     html:skillRows() },
@@ -851,7 +1147,7 @@ const ZONES = [
 /* ================= УПРАВЛЕНИЕ ================= */
 
 const keys = {};
-let yaw = 0, pitch = -0.05, locked = false, flying = null, bob = 0;
+let yaw = 0, pitch = 0.10, locked = false, flying = null, bob = 0;
 const vel = new V3();
 
 addEventListener('keydown', e=>{ keys[e.code]=true; });
@@ -863,7 +1159,7 @@ renderer.domElement.addEventListener('click', ()=>{
 document.addEventListener('pointerlockchange', ()=>{
   locked = document.pointerLockElement === renderer.domElement;
 });
-let yawTarget = 0, pitchTarget = -0.05;
+let yawTarget = 0, pitchTarget = 0.10;
 document.addEventListener('mousemove', e=>{
   if(!locked) return;
   yawTarget   -= e.movementX * .0021;
@@ -984,11 +1280,11 @@ ZONES.forEach((z,i)=>{
   beam.position.y = 3.8;
   g.add(beam);
 
-  const num = label(String(i+1), {size:38, color:'#ffd9a0', weight:700, scale:.5, far:64, fade:16});
-  num.position.set(0, 2.4, 0);
+  const num = label(String(i+1), {size:36, color:'#ffd9a0', weight:700, scale:.34, far:60, fade:16});
+  num.position.set(0, 1.5, 0);
   g.add(num);
   const cap = label(z.name, {size:30, color:'#f0a63c', scale:.55, far:64, fade:16});
-  cap.position.set(0, 3.1, 0);
+  cap.position.set(0, 2.4, 0);
   g.add(cap);
 
   const halo = new THREE.Sprite(new THREE.SpriteMaterial({map:GLOW, transparent:true,
@@ -1042,6 +1338,25 @@ addEventListener('keydown', e=>{
   }
 });
 
+function updateMarkers(tsec){
+  for(let i=0;i<MARKERS.length;i++){
+    const M = MARKERS[i];
+    const k = .5 + .5*Math.sin(tsec*1.5 + M.phase);
+    // подойдя вплотную, игрок оказался бы внутри столба света — гасим
+    const dm = Math.hypot(camera.position.x - M.pos.x, camera.position.z - M.pos.z);
+    const near = Math.min(1, Math.max(0, (dm - 3.5)/5));
+    M.ring.material.opacity = (.45 + .35*k) * near;
+    M.ring.scale.setScalar(1 + .05*k);
+    M.disc.material.opacity = .10 * near;
+    M.halo.material.opacity = (.14 + .12*k) * near;
+    M.beam.material.opacity = (.06 + .06*k) * near;
+    M.beam.visible = near > .02;
+    M.num.material.opacity = near;
+    M.cap.material.opacity = near;
+    M.num.visible = M.cap.visible = near > .02;
+  }
+}
+
 /* ================= ЦИКЛ ================= */
 
 let started = false, last = performance.now();
@@ -1078,8 +1393,8 @@ function tick(now){
     bob += dt * speed * (running ? 1.15 : 1.5);
     const bobY = Math.sin(bob*2) * Math.min(speed/sp, 1) * .055;
     camera.position.y = 1.7 + bobY;
-    camera.position.x = Math.max(-46, Math.min(80, camera.position.x));
-    camera.position.z = Math.max(FIN_Z - 26, Math.min(34, camera.position.z));
+    camera.position.x = Math.max(-46, Math.min(96, camera.position.x));
+    camera.position.z = Math.max(FIN_Z - 26, Math.min(48, camera.position.z));
   }
 
   // плавный доворот к цели взгляда — камера не дёргается
@@ -1092,23 +1407,9 @@ function tick(now){
   camera.rotateY(yaw);
   camera.rotateX(pitch);
 
-  const tsec = now/1000;
-  for(let i=0;i<MARKERS.length;i++){
-    const M = MARKERS[i];
-    const k = .5 + .5*Math.sin(tsec*1.5 + M.phase);
-    // подойдя вплотную, игрок оказался бы внутри столба света — гасим
-    const dm = Math.hypot(camera.position.x - M.pos.x, camera.position.z - M.pos.z);
-    const near = Math.min(1, Math.max(0, (dm - 3.5)/5));
-    M.ring.material.opacity = (.45 + .35*k) * near;
-    M.ring.scale.setScalar(1 + .05*k);
-    M.disc.material.opacity = .10 * near;
-    M.halo.material.opacity = (.14 + .12*k) * near;
-    M.beam.material.opacity = (.06 + .06*k) * near;
-    M.beam.visible = near > .02;
-    M.num.material.opacity = near;
-    M.cap.material.opacity = near;
-  }
+  updateMarkers(now/1000);
   lamp.position.set(camera.position.x, 3.4, camera.position.z);
+  skyMat.uniforms.uTime.value = now/1000;
 
   updateLabels();
   if(started) updateAim();
@@ -1137,7 +1438,7 @@ window.__view = {
   place:(x,z,yw,pt)=>{camera.position.set(x,1.7,z); yaw=yawTarget=yw; pitch=pitchTarget=(pt||-.05); flying=null;
     const e={position:camera.position}; },
   refresh:()=>updateLabels(),
-  shot:()=>{ updateLabels(); renderer.render(scene,camera); return renderer.domElement.toDataURL('image/png'); }
+  shot:()=>{ updateLabels(); updateMarkers(performance.now()/1000); renderer.render(scene,camera); return renderer.domElement.toDataURL('image/png'); }
 };
 
 /* старт */
