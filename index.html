@@ -110,10 +110,9 @@
   <div class="box">
     <div class="kicker">Задание на семинар · визуальная стратегия</div>
     <h1>Маршрут 2028</h1>
-    <p>Персональная стратегия профессионального развития на два года.
-       Роль: продюсер цифровых продуктов и событий. Пространство построено как маршрут:
-       от того, кто я сейчас, через собственные разрывы в компетенциях — к состоянию, в котором
-       я собираю продукт чужими руками, а не своими.</p>
+    <p>Стратегия на два года, собранная как маршрут, по которому можно пройти ногами.
+       Роль — продюсер цифровых продуктов и событий. По пути: зал с уже сделанными работами,
+       лес компетенций, где видно нехватку, три провала с мостами и дорожная карта до лета 2028.</p>
     <div class="keys">
       <span><b>W A S D</b>движение</span>
       <span><b>мышь</b>обзор</span>
@@ -155,13 +154,14 @@
 
 const ROLE = {
   title:'Продюсер цифровых продуктов и событий',
-  text:'Продюсер отвечает за путь замысла до аудитории целиком: собирает людей и ресурсы, держит срок, бюджет и смысл. Не за свой участок работы, а за результат.',
+  text:'Продюсер отвечает не за свой участок, а за то, дошло ли дело до людей. Он собирает команду и деньги, держит срок и смысл, и отвечает за результат целиком.',
   why:[
-    'Собрал и вывел в работу цифровой сервис с платящими пользователями и инфраструктурой из 14 узлов.',
-    'Вёл портал события на 4747 участников и организацию около 170 деловых встреч.',
-    'Построил производственную систему из 14 ИИ-агентов: от исследования до готового медиа.'
+    'Собрал VPN-сервис и довёл до платящих пользователей: 14 узлов, бот, мини-приложение, поддержка.',
+    'Вёл портал события на 4747 участников и деловую программу примерно на 170 встреч.',
+    'Построил производство из 14 ИИ-агентов: от поиска материала до готового ролика.',
+    'Сделал больше десяти работающих сайтов — они рядом, в Зале работ.'
   ],
-  gap:'Но я произвожу сам. Продюсер производит чужими руками. Эти два года — переход от исполнителя к тому, кто собирает.'
+  gap:'Слабое место видно сразу: всё это я делаю руками. Продюсер делает чужими. На этот переход и уходят два года.'
 };
 
 const SKILLS = [
@@ -185,27 +185,35 @@ const SKILLS = [
 
 const GAPS = [
   { t:'Публичность', d:5, from:2, to:7,
-    why:'Продюсера выбирают по репутации и по тому, что о нём знают. Я сделал многое и не рассказал ничего. Для рынка меня не существует.',
-    how:['Публичный дневник производства, два раза в неделю','Развёрнутый разбор кейса с реальными цифрами','Четыре доклада на отраслевых площадках за два года','Два эфира или подкаста как приглашённый']},
+    why:'Сделал много, рассказал почти ничего. Продюсера зовут по имени и репутации, а для рынка меня пока нет. Это дешевле всего исправить и дороже всего не замечать.',
+    how:['Дневник производства: два раза в неделю, публично',
+         'Разбор своего кейса с настоящими цифрами, включая провалы',
+         'Четыре выступления за два года',
+         'Два эфира или подкаста как приглашённый']},
   { t:'Команда', d:4, from:3, to:7,
-    why:'Всё делаю сам и через агентов. Это делает меня быстрым исполнителем и мешает стать продюсером: масштаб упирается в мои сутки.',
-    how:['Первый наёмный человек до конца первого года','Регламент постановки задачи и приёмки работы','Команда из трёх человек к весне 2028','Вывести себя из ежедневного производства']},
+    why:'Всё держится на мне и на агентах. Быстро — да, но потолок упирается в мои же сутки. Пока не научусь отдавать работу, расти будет некуда.',
+    how:['Первый наёмный человек до конца первого года',
+         'Внятная постановка задачи и приёмка вместо «сделай красиво»',
+         'Три человека в команде к весне 2028',
+         'Выйти из ежедневного производства']},
   { t:'Экономика', d:4, from:4, to:8,
-    why:'Есть продукт и есть пользователи, но модель не сходится. Пока я не умею считать деньги проекта, любой запуск — это лотерея.',
-    how:['P&L действующего сервиса за 30 дней','LTV и CAC по каждому каналу привлечения','Операционная безубыточность продукта','Повторить расчёт на втором продукте с нуля']}
+    why:'Продукт есть, пользователи есть, а модель не сходится. Пока не умею считать деньги проекта, каждый запуск остаётся лотереей.',
+    how:['Свести P&L действующего сервиса за месяц',
+         'Посчитать, сколько стоит клиент и сколько приносит',
+         'Вывести сервис в операционный плюс',
+         'Повторить расчёт на новом проекте с нуля']}
 ];
 
 const PLAN = [
-  {q:'Q1', d:'осень 2026',  t:'Диагностика',      r:'P&L и метрики сведены, 10 интервью с пользователями, запущен публичный дневник'},
-  {q:'Q2', d:'зима 2027',   t:'Экономика',        r:'Операционная безубыточность, первый наёмный человек, первый доклад'},
-  {q:'Q3', d:'весна 2027',  t:'Событие №1',       r:'Собственное цифровое событие проведено, кейс разобран публично'},
-  {q:'Q4', d:'лето 2027',   t:'Внешняя проверка', r:'Практика в продюсерском центре или студии, собрано портфолио'},
-  {q:'Q5', d:'осень 2027',  t:'Повторяемость',    r:'Второй продукт с нуля за шесть недель по собственному процессу'},
-  {q:'Q6', d:'зима 2028',   t:'Событие №2',       r:'Гибридное событие, 300+ участников, привлечён партнёр'},
-  {q:'Q7', d:'весна 2028',  t:'Команда',          r:'Три человека в команде, я вне ежедневного производства'},
-  {q:'Q8', d:'лето 2028',   t:'Защита',           r:'Диплом как защищённый кейс, выход на роль продюсера'}
+  {q:'Q1', d:'осень 2026',  t:'Разобраться в цифрах', r:'Сведён P&L, посчитана воронка, десять разговоров с живыми пользователями, запущен публичный дневник'},
+  {q:'Q2', d:'зима 2027',   t:'Выйти в плюс',         r:'Сервис перестал есть деньги, нанят первый человек, сделано первое выступление'},
+  {q:'Q3', d:'весна 2027',  t:'Своё событие',         r:'Первое цифровое событие проведено от начала до конца и разобрано публично'},
+  {q:'Q4', d:'лето 2027',   t:'Проверка со стороны',  r:'Практика в чужой команде: посмотреть, как это делают те, кто давно в деле'},
+  {q:'Q5', d:'осень 2027',  t:'Повторить процесс',    r:'Новый продукт с нуля за шесть недель — по своему процессу, а не на удаче'},
+  {q:'Q6', d:'зима 2028',   t:'Событие крупнее',      r:'Гибридное событие на 300+ человек, впервые с внешним партнёром'},
+  {q:'Q7', d:'весна 2028',  t:'Команда',              r:'Три человека, я занят результатом, а не производством'},
+  {q:'Q8', d:'лето 2028',   t:'Защита',               r:'Диплом как разобранный кейс. Дальше — своя студия или роль продюсера в найме'}
 ];
-
 
 const WORKS = [
   {f:'unit.jpg',      t:'UNIT.',                 u:'https://unitdeveloper.com',    k:'Недвижимость',
@@ -249,55 +257,177 @@ const V3 = THREE.Vector3;
 const app = document.getElementById('app');
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x07090c);
-scene.fog = new THREE.Fog(0x07090c, 40, 210);
-
-const camera = new THREE.PerspectiveCamera(62, innerWidth/innerHeight, .1, 800);
+const camera = new THREE.PerspectiveCamera(62, innerWidth/innerHeight, .1, 900);
 camera.position.set(0, 1.7, 22);
 
 const renderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
+if(THREE.SRGBColorSpace) renderer.outputColorSpace = THREE.SRGBColorSpace;
+if(THREE.ACESFilmicToneMapping){
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.02;
+}
 app.appendChild(renderer.domElement);
 
-scene.add(new THREE.AmbientLight(0x5a6878, 1.15));
-const key = new THREE.DirectionalLight(0xdce6f2, 1.0);
-key.position.set(24, 40, 18);
+scene.fog = new THREE.FogExp2(0x070b11, 0.0062);
+
+/* небосвод — мягкий вертикальный градиент вместо плоской заливки */
+const skyGeo = new THREE.SphereGeometry(420, 32, 20);
+const skyMat = new THREE.ShaderMaterial({
+  side: THREE.BackSide, depthWrite:false,
+  uniforms:{ top:{value:new THREE.Color(0x0d1622)}, bottom:{value:new THREE.Color(0x05070b)},
+             horizon:{value:new THREE.Color(0x16202c)} },
+  vertexShader:'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
+  fragmentShader:[
+   'uniform vec3 top; uniform vec3 bottom; uniform vec3 horizon; varying vec3 vP;',
+   'void main(){',
+   '  float h = normalize(vP).y;',
+   '  vec3 c = mix(horizon, top, smoothstep(0.0, 0.55, h));',
+   '  c = mix(bottom, c, smoothstep(-0.35, 0.06, h));',
+   '  gl_FragColor = vec4(c, 1.0);',
+   '}'].join('\n')
+});
+scene.add(new THREE.Mesh(skyGeo, skyMat));
+
+/* свет */
+scene.add(new THREE.HemisphereLight(0x7c9ec0, 0x0a0f16, .52));
+scene.add(new THREE.AmbientLight(0x33424f, .42));
+
+const key = new THREE.DirectionalLight(0xdceaf8, .92);
+key.position.set(28, 46, 22);
 scene.add(key);
-const rim = new THREE.DirectionalLight(0xf0a63c, .35);
-rim.position.set(-20, 14, -60);
+
+const fillL = new THREE.DirectionalLight(0x53708c, .3);
+fillL.position.set(-30, 20, 12);
+scene.add(fillL);
+
+const rim = new THREE.DirectionalLight(0xf0a63c, .5);
+rim.position.set(-18, 12, -70);
 scene.add(rim);
 
-/* пол и сетка */
+/* фонарь, который движется вместе с игроком — «свой свет» */
+const lamp = new THREE.PointLight(0xa8c4e2, .95, 26, 2);
+scene.add(lamp);
+
+/* пол — процедурная текстура вместо плоского цвета */
+function floorTexture(){
+  const c = document.createElement('canvas'); c.width = c.height = 512;
+  const x = c.getContext('2d');
+  x.fillStyle = '#0a0e14'; x.fillRect(0,0,512,512);
+  // мягкие пятна
+  for(let i=0;i<60;i++){
+    const r = 40 + Math.random()*120;
+    const g = x.createRadialGradient(Math.random()*512, Math.random()*512, 0,
+                                     Math.random()*512, Math.random()*512, r);
+    g.addColorStop(0,'rgba(30,42,58,.16)'); g.addColorStop(1,'rgba(30,42,58,0)');
+    x.fillStyle = g; x.fillRect(0,0,512,512);
+  }
+  // зерно
+  const img = x.getImageData(0,0,512,512), d = img.data;
+  for(let i=0;i<d.length;i+=4){
+    const n = (Math.random()-.5)*11;
+    d[i]+=n; d[i+1]+=n; d[i+2]+=n;
+  }
+  x.putImageData(img,0,0);
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(24,24);
+  return t;
+}
 const floor = new THREE.Mesh(
-  new THREE.PlaneGeometry(700, 700),
-  new THREE.MeshStandardMaterial({color:0x0a0d12, roughness:.95, metalness:.05})
+  new THREE.PlaneGeometry(760, 760),
+  new THREE.MeshStandardMaterial({map:floorTexture(), color:0x76858f, roughness:.9, metalness:.1})
 );
 floor.rotation.x = -Math.PI/2;
 scene.add(floor);
 
-const grid = new THREE.GridHelper(700, 175, 0x223040, 0x141b24);
+const grid = new THREE.GridHelper(760, 190, 0x2b3d4e, 0x151d27);
 grid.position.y = .02;
+grid.material.transparent = true;
+grid.material.opacity = .5;
 scene.add(grid);
+
+/* мягкая тень-подложка под объектом */
+function blobTexture(){
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const x = c.getContext('2d');
+  const g = x.createRadialGradient(128,128,0,128,128,128);
+  g.addColorStop(0,'rgba(0,0,0,.55)'); g.addColorStop(.55,'rgba(0,0,0,.22)'); g.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle = g; x.fillRect(0,0,256,256);
+  return new THREE.CanvasTexture(c);
+}
+const BLOB = blobTexture();
+function shadowBlob(x, z, r){
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(r*2, r*2),
+    new THREE.MeshBasicMaterial({map:BLOB, transparent:true, depthWrite:false}));
+  m.rotation.x = -Math.PI/2;
+  m.position.set(x, .06, z);
+  scene.add(m);
+  return m;
+}
+
+/* светящийся ореол (аддитивный спрайт) */
+function glowTexture(){
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const x = c.getContext('2d');
+  const g = x.createRadialGradient(128,128,0,128,128,128);
+  g.addColorStop(0,'rgba(255,255,255,.95)');
+  g.addColorStop(.25,'rgba(255,200,120,.45)');
+  g.addColorStop(1,'rgba(255,180,90,0)');
+  x.fillStyle = g; x.fillRect(0,0,256,256);
+  return new THREE.CanvasTexture(c);
+}
+const GLOW = glowTexture();
+function glow(x,y,z,size,color,op){
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({
+    map:GLOW, transparent:true, depthWrite:false, opacity: op===undefined ? .38 : op,
+    blending:THREE.AdditiveBlending, color: color===undefined ? 0xffc98a : color
+  }));
+  sp.position.set(x,y,z); sp.scale.set(size,size,1);
+  scene.add(sp);
+  return sp;
+}
 
 /* центральная дорога маршрута */
 const ROAD_FROM = 26, ROAD_TO = -250;
 const road = new THREE.Mesh(
   new THREE.PlaneGeometry(9, ROAD_FROM - ROAD_TO),
-  new THREE.MeshStandardMaterial({color:0x121924, roughness:.85})
+  new THREE.MeshStandardMaterial({color:0x161f2b, roughness:.72, metalness:.18})
 );
 road.rotation.x = -Math.PI/2;
 road.position.set(0, .04, (ROAD_FROM + ROAD_TO)/2);
 scene.add(road);
 
-const edgeMat = new THREE.LineBasicMaterial({color:0x2c3c4c});
+const edgeMat = new THREE.LineBasicMaterial({color:0x44607a});
 [-4.5, 4.5].forEach(x=>{
   const g = new THREE.BufferGeometry().setFromPoints([new V3(x,.06,ROAD_FROM), new V3(x,.06,ROAD_TO)]);
   scene.add(new THREE.Line(g, edgeMat));
 });
 
+/* фонари вдоль маршрута — дают глубину и ритм */
+for(let z = ROAD_FROM - 22; z > ROAD_TO + 14; z -= 34){
+  [-6.6, 6.6].forEach(px=>{
+    const pole = new THREE.Mesh(
+      new THREE.CylinderGeometry(.09,.13,5.4,8),
+      new THREE.MeshStandardMaterial({color:0x2a3542, roughness:.55, metalness:.55})
+    );
+    pole.position.set(px, 2.7, z);
+    scene.add(pole);
+    const head = new THREE.Mesh(
+      new THREE.BoxGeometry(.55,.18,.55),
+      new THREE.MeshStandardMaterial({color:0xffd9a0, emissive:0xffb765, emissiveIntensity:2.0})
+    );
+    head.position.set(px, 5.45, z);
+    scene.add(head);
+    glow(px, 5.45, z, 1.9, 0xffc07a, .34);
+    shadowBlob(px, z, 1.2);
+  });
+}
+
 /* ---- подписи ---- */
 const LABELS = [];
+const SKIP_FADE = new Set();
 function label(text, opts){
   opts = opts || {};
   const size = opts.size || 54;
@@ -305,28 +435,33 @@ function label(text, opts){
   const weight = opts.weight || 600;
   const track = opts.track || 0;
   const pad = 28;
+  const DPR = 2;                                   // ретина-качество подписей
   const c = document.createElement('canvas');
   const ctx = c.getContext('2d');
-  const font = weight+' '+size+'px -apple-system, "Segoe UI", Roboto, Arial, sans-serif';
+  const font = weight+' '+(size*DPR)+'px -apple-system, "Segoe UI", Roboto, Arial, sans-serif';
   ctx.font = font;
-  let w = Math.ceil(ctx.measureText(text).width + track*text.length) + pad*2;
-  c.width = Math.min(w, 2048); c.height = size + pad*2;
+  let w = Math.ceil(ctx.measureText(text).width + track*DPR*text.length) + pad*DPR*2;
+  c.width = Math.min(w, 4096); c.height = (size + pad*2)*DPR;
   const c2 = c.getContext('2d');
   c2.font = font;
-  c2.fillStyle = color;
   c2.textBaseline = 'middle';
+  c2.shadowColor = 'rgba(0,0,0,.85)';              // тень — чтобы текст читался на любом фоне
+  c2.shadowBlur = 10*DPR;
+  c2.shadowOffsetY = 2*DPR;
+  c2.fillStyle = color;
   if(track){
-    let x = pad;
-    for(const ch of text){ c2.fillText(ch, x, c.height/2); x += c2.measureText(ch).width + track; }
+    let x = pad*DPR;
+    for(const ch of text){ c2.fillText(ch, x, c.height/2); x += c2.measureText(ch).width + track*DPR; }
   } else {
-    c2.fillText(text, pad, c.height/2);
+    c2.fillText(text, pad*DPR, c.height/2);
   }
   const tex = new THREE.CanvasTexture(c);
-  tex.anisotropy = 4;
+  tex.anisotropy = 8;
   const sp = new THREE.Sprite(new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:opts.depthTest!==false}));
-  const scale = (opts.scale || 1) * .012;
+  const scale = (opts.scale || 1) * .006;   // DPR=2 компенсируется масштабом
   sp.scale.set(c.width*scale, c.height*scale, 1);
   LABELS.push({s:sp, far: opts.far || 78, fade: opts.fade || 22});
+  sp.userData.li = LABELS.length-1;
   return sp;
 }
 function put(text, x,y,z, opts){
@@ -417,7 +552,7 @@ WORKS.forEach((w,i)=>{
   // рама
   const frame = new THREE.Mesh(
     new THREE.BoxGeometry(7.0, 4.6, .35),
-    new THREE.MeshStandardMaterial({color:0x121a24, roughness:.65, metalness:.25})
+    new THREE.MeshStandardMaterial({color:0x1a2431, roughness:.42, metalness:.55})
   );
   frame.position.set(0, 3.4, 0);
   grp.add(frame);
@@ -429,7 +564,9 @@ WORKS.forEach((w,i)=>{
 
   // экран с превью сайта
   const tex = w.f ? loader.load('tex/'+w.f) : cardTexture(w.t, w.k);
-  if(w.f && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
+  if(THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 8;
+  tex.minFilter = THREE.LinearMipmapLinearFilter;
   const screen = new THREE.Mesh(
     new THREE.PlaneGeometry(6.5, 4.06),
     new THREE.MeshBasicMaterial({map:tex})
@@ -441,11 +578,16 @@ WORKS.forEach((w,i)=>{
 
   // ножка
   const leg = new THREE.Mesh(
-    new THREE.BoxGeometry(1.2, 1.2, .3),
-    new THREE.MeshStandardMaterial({color:0x1a232e, roughness:.8})
+    new THREE.BoxGeometry(1.3, 1.2, .35),
+    new THREE.MeshStandardMaterial({color:0x1e2836, roughness:.6, metalness:.4})
   );
   leg.position.set(0, .6, 0);
   grp.add(leg);
+  shadowBlob(x, z, 3.2);
+  // подсветка стенда снизу
+  const wash = new THREE.PointLight(0x8fb6dd, .42, 10, 2);
+  wash.position.set(x, 2.2, z + (side<0 ? 2.2 : -2.2));
+  scene.add(wash);
 
   // подписи
   const nm = label(w.t, {size:34, color:'#dfe6ee', scale:.62, far:46, fade:12});
@@ -457,7 +599,7 @@ WORKS.forEach((w,i)=>{
 });
 
 put('ЗАЛ РАБОТ', GAL_X0 - 4, 8.4, 0, {size:44, color:'#f0a63c', track:12, scale:.85, far:70});
-put('сайты, недвижимость, гранты — открой любой', GAL_X0 - 4, 7.4, 0, {size:30, color:'#7d8b9a', scale:.7, far:60});
+put('наведи прицел на экран и нажми Enter — сайт откроется', GAL_X0 - 4, 7.4, 0, {size:30, color:'#7d8b9a', scale:.7, far:60});
 
 // указатель со старта
 put('РАБОТЫ →', 15, 4.2, 6, {size:36, color:'#f0a63c', track:8, scale:.7, far:44});
@@ -501,6 +643,7 @@ SKILLS.forEach((s,i)=>{
     scene.add(ge);
   }
 
+  shadowBlob(x, z, 2.6);
   const nm = label(s.n, {size:32, color:'#c8d3de', scale:.8});
   nm.position.set(x, hTgt + 1.5, z);
   scene.add(nm);
@@ -509,7 +652,7 @@ SKILLS.forEach((s,i)=>{
   scene.add(num);
 });
 put('САМОАНАЛИЗ КОМПЕТЕНЦИЙ', 0, 7.2, SK_Z0 + 5, {size:42, color:'#f0a63c', track:10, far:120});
-put('плотный объём — сейчас · контур — цель 2028', 0, 6.2, SK_Z0 + 5, {size:32, color:'#7d8b9a'});
+put('высота — то, что есть · светящийся контур — сколько не хватает', 0, 6.2, SK_Z0 + 5, {size:32, color:'#7d8b9a', far:100});
 
 /* ---- зона 4: РАЗРЫВЫ (провалы и мосты) ---- */
 const GAP_Z0 = -104, GAP_STEP = 17;
@@ -595,7 +738,7 @@ GAPS.forEach((g,i)=>{
   });
 });
 put('РАЗРЫВЫ И СПОСОБЫ ИХ ЗАКРЫТЬ', 0, 10.2, GAP_Z0 + 13, {size:42, color:'#f0a63c', track:10, far:120});
-put('три самых широких — через них проложен мост', 0, 7.6, GAP_Z0 + 11, {size:32, color:'#7d8b9a'});
+put('через каждый провал переброшен мост — это и есть план', 0, 7.6, GAP_Z0 + 13, {size:32, color:'#7d8b9a', far:100});
 
 /* ---- зона 5: ПЛАН (вехи по маршруту) ---- */
 const PLAN_Z0 = -166, PLAN_STEP = 9.2;
@@ -657,8 +800,8 @@ ring.rotation.x = -Math.PI/2;
 ring.position.set(0, .65, FIN_Z);
 scene.add(ring);
 put('ЛЕТО 2028', 0, 7.4, FIN_Z, {size:52, color:'#f0a63c', track:14, scale:1.1, far:130});
-put('продюсер, который собирает продукт чужими руками', 0, 6.2, FIN_Z, {size:34, color:'#dfe6ee'});
-put('команда 3 человека · два проведённых события · сходящаяся экономика', 0, 5.4, FIN_Z, {size:28, color:'#7d8b9a'});
+put('здесь я собираю, а не только делаю', 0, 6.2, FIN_Z, {size:34, color:'#dfe6ee', far:90});
+put('три человека в команде · два своих события · продукт в плюсе', 0, 5.4, FIN_Z, {size:28, color:'#7d8b9a', far:90});
 
 /* ================= ЗОНЫ И ПАНЕЛИ ================= */
 
@@ -697,18 +840,18 @@ const ZONES = [
     html:'<ul>'+PLAN.map(p=>'<li><span class="num">'+p.q+' · '+p.d+'</span> — <b style="color:#dfe6ee">'+p.t+'</b><br>'+p.r+'</li>').join('')+'</ul>' },
   { id:'fin', name:'2028', zone:'Финал', title:'Состояние к лету 2028',
     pos:new V3(0, 1.7, FIN_Z + 12), look:new V3(0,5,FIN_Z),
-    html:'<p>Я не производю сам каждый артефакт. Я собираю команду, ставлю задачу, принимаю работу и отвечаю за результат перед аудиторией и деньгами.</p>'+
-         '<ul><li>Команда из трёх человек, я вне ежедневного производства</li>'+
-         '<li>Два собственных проведённых события</li>'+
-         '<li>Продукт со сходящейся экономикой</li>'+
-         '<li>Публичный след: дневник, четыре доклада, разобранные кейсы</li>'+
-         '<li>Диплом как защищённый кейс, а не как текст</li></ul>' }
+    html:'<p>Итог, по которому себя проверю. Не «стал лучше», а вещи, которые либо есть, либо нет.</p>'+
+         '<ul><li>Три человека в команде, я занят результатом, а не производством</li>'+
+         '<li>Два своих события, проведённых от идеи до отчёта</li>'+
+         '<li>Продукт, который не ест деньги</li>'+
+         '<li>Публичный след: дневник, четыре выступления, разобранные кейсы</li>'+
+         '<li>Диплом как кейс, который можно показать, а не сдать</li></ul>' }
 ];
 
 /* ================= УПРАВЛЕНИЕ ================= */
 
 const keys = {};
-let yaw = 0, pitch = -0.05, locked = false, flying = null;
+let yaw = 0, pitch = -0.05, locked = false, flying = null, bob = 0;
 const vel = new V3();
 
 addEventListener('keydown', e=>{ keys[e.code]=true; });
@@ -720,11 +863,12 @@ renderer.domElement.addEventListener('click', ()=>{
 document.addEventListener('pointerlockchange', ()=>{
   locked = document.pointerLockElement === renderer.domElement;
 });
+let yawTarget = 0, pitchTarget = -0.05;
 document.addEventListener('mousemove', e=>{
   if(!locked) return;
-  yaw   -= e.movementX * .0022;
-  pitch -= e.movementY * .0022;
-  pitch = Math.max(-1.25, Math.min(1.25, pitch));
+  yawTarget   -= e.movementX * .0021;
+  pitchTarget -= e.movementY * .0021;
+  pitchTarget = Math.max(-1.2, Math.min(1.2, pitchTarget));
 });
 
 addEventListener('resize', ()=>{
@@ -802,6 +946,7 @@ const hint = document.getElementById('hint');
 /* затухание подписей по расстоянию — иначе дальние надписи наезжают друг на друга */
 function updateLabels(){
   for(let i=0;i<LABELS.length;i++){
+    if(SKIP_FADE.has(i)) continue;
     const L = LABELS[i];
     const d = camera.position.distanceTo(L.s.position);
     if(d > L.far){ L.s.visible = false; continue; }
@@ -809,6 +954,51 @@ function updateLabels(){
     L.s.material.opacity = Math.min(1, Math.max(0, (L.far - d)/L.fade));
   }
 }
+
+/* ---- навигационные точки на полу ---- */
+const MARKERS = [];
+ZONES.forEach((z,i)=>{
+  const g = new THREE.Group();
+  g.position.set(z.pos.x, 0, z.pos.z);
+  scene.add(g);
+
+  const ring = new THREE.Mesh(
+    new THREE.RingGeometry(1.5, 1.9, 48),
+    new THREE.MeshBasicMaterial({color:0xf0a63c, transparent:true, opacity:.75, side:THREE.DoubleSide})
+  );
+  ring.rotation.x = -Math.PI/2; ring.position.y = .09;
+  g.add(ring);
+
+  const disc = new THREE.Mesh(
+    new THREE.CircleGeometry(1.45, 40),
+    new THREE.MeshBasicMaterial({color:0xf0a63c, transparent:true, opacity:.10})
+  );
+  disc.rotation.x = -Math.PI/2; disc.position.y = .08;
+  g.add(disc);
+
+  const beam = new THREE.Mesh(
+    new THREE.CylinderGeometry(.32,.32,7.5,12,1,true),
+    new THREE.MeshBasicMaterial({color:0xf0a63c, transparent:true, opacity:.10,
+      side:THREE.DoubleSide, depthWrite:false, blending:THREE.AdditiveBlending})
+  );
+  beam.position.y = 3.8;
+  g.add(beam);
+
+  const num = label(String(i+1), {size:38, color:'#ffd9a0', weight:700, scale:.5, far:64, fade:16});
+  num.position.set(0, 2.4, 0);
+  g.add(num);
+  const cap = label(z.name, {size:30, color:'#f0a63c', scale:.55, far:64, fade:16});
+  cap.position.set(0, 3.1, 0);
+  g.add(cap);
+
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({map:GLOW, transparent:true,
+    depthWrite:false, blending:THREE.AdditiveBlending, color:0xf0a63c}));
+  halo.position.set(0, .4, 0); halo.scale.set(7,7,1);
+  g.add(halo);
+
+  SKIP_FADE.add(num.userData.li); SKIP_FADE.add(cap.userData.li);
+  MARKERS.push({ring:ring, beam:beam, halo:halo, disc:disc, num:num, cap:cap, pos:z.pos, phase:i*.7});
+});
 
 /* ---- прицел по стендам работ ---- */
 const ray = new THREE.Raycaster();
@@ -867,9 +1057,10 @@ function tick(now){
     camera.position.lerpVectors(flying.from, flying.to, e);
     yaw   = flying.yawFrom   + (flying.yawTo   - flying.yawFrom)*e;
     pitch = flying.pitchFrom + (flying.pitchTo - flying.pitchFrom)*e;
-    if(flying.t >= 1) flying = null;
+    if(flying.t >= 1){ flying = null; yawTarget = yaw; pitchTarget = pitch; }
   } else if(started){
-    const sp = (keys.ShiftLeft || keys.ShiftRight) ? 26 : 11;
+    const running = keys.ShiftLeft || keys.ShiftRight;
+    const sp = running ? 22 : 9.5;
     const fwd = (keys.KeyW||keys.ArrowUp?1:0) - (keys.KeyS||keys.ArrowDown?1:0);
     const str = (keys.KeyD||keys.ArrowRight?1:0) - (keys.KeyA||keys.ArrowLeft?1:0);
     const dir = new V3(
@@ -878,16 +1069,46 @@ function tick(now){
       Math.cos(yaw)*-fwd - Math.sin(yaw)*str
     );
     if(dir.lengthSq()>0) dir.normalize();
-    vel.lerp(dir.multiplyScalar(sp), 1 - Math.pow(.002, dt));
+    // мягкий разгон и такое же мягкое торможение
+    const accel = dir.lengthSq() > 0 ? .06 : .012;
+    vel.lerp(dir.multiplyScalar(sp), 1 - Math.pow(accel, dt));
     camera.position.addScaledVector(vel, dt);
-    camera.position.y = 1.7;
+    // покачивание шага — только когда действительно идём
+    const speed = vel.length();
+    bob += dt * speed * (running ? 1.15 : 1.5);
+    const bobY = Math.sin(bob*2) * Math.min(speed/sp, 1) * .055;
+    camera.position.y = 1.7 + bobY;
     camera.position.x = Math.max(-46, Math.min(80, camera.position.x));
     camera.position.z = Math.max(FIN_Z - 26, Math.min(34, camera.position.z));
   }
 
+  // плавный доворот к цели взгляда — камера не дёргается
+  if(!flying){
+    const smooth = 1 - Math.pow(.0000012, dt);
+    yaw   += (yawTarget - yaw) * smooth;
+    pitch += (pitchTarget - pitch) * smooth;
+  }
   camera.rotation.set(0,0,0);
   camera.rotateY(yaw);
   camera.rotateX(pitch);
+
+  const tsec = now/1000;
+  for(let i=0;i<MARKERS.length;i++){
+    const M = MARKERS[i];
+    const k = .5 + .5*Math.sin(tsec*1.5 + M.phase);
+    // подойдя вплотную, игрок оказался бы внутри столба света — гасим
+    const dm = Math.hypot(camera.position.x - M.pos.x, camera.position.z - M.pos.z);
+    const near = Math.min(1, Math.max(0, (dm - 3.5)/5));
+    M.ring.material.opacity = (.45 + .35*k) * near;
+    M.ring.scale.setScalar(1 + .05*k);
+    M.disc.material.opacity = .10 * near;
+    M.halo.material.opacity = (.14 + .12*k) * near;
+    M.beam.material.opacity = (.06 + .06*k) * near;
+    M.beam.visible = near > .02;
+    M.num.material.opacity = near;
+    M.cap.material.opacity = near;
+  }
+  lamp.position.set(camera.position.x, 3.4, camera.position.z);
 
   updateLabels();
   if(started) updateAim();
@@ -913,7 +1134,7 @@ requestAnimationFrame(tick);
 window.__view = {
   get camera(){return camera}, get renderer(){return renderer}, scene:scene,
   zones:ZONES, flyTo:flyTo, start:()=>{started=true;},
-  place:(x,z,yw,pt)=>{camera.position.set(x,1.7,z); yaw=yw; pitch=pt||-.05; flying=null;
+  place:(x,z,yw,pt)=>{camera.position.set(x,1.7,z); yaw=yawTarget=yw; pitch=pitchTarget=(pt||-.05); flying=null;
     const e={position:camera.position}; },
   refresh:()=>updateLabels(),
   shot:()=>{ updateLabels(); renderer.render(scene,camera); return renderer.domElement.toDataURL('image/png'); }
